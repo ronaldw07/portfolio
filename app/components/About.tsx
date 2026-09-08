@@ -4,7 +4,15 @@ const facts = [
   { label: "Based in", value: "Irvine, CA" },
   { label: "Studying", value: "Computer Science, UC Irvine" },
   { label: "Fellowship", value: "Break Through Tech AI Studio" },
-  { label: "Currently learning", value: "Statistical inference & experimental design" },
+];
+
+const currentlyLearning = [
+  "Product management",
+  "Product design",
+  "Product engineering",
+  "AI",
+  "Agents",
+  "Infrastructure",
 ];
 
 export function About() {
@@ -23,9 +31,10 @@ export function About() {
             <p>
               I&apos;m part of Break Through Tech&apos;s AI Studio fellowship,
               on a small team building Chewy, a machine learning system for
-              detecting AI-generated text. Outside of that I&apos;m working
-              through statistical inference and experimental design, the
-              rigor behind claiming an insight is real rather than noise.
+              detecting AI-generated text. Outside of that, I&apos;m
+              deliberately building range across the full product stack:
+              management, design, and engineering, plus the AI, agent, and
+              infrastructure layers most products now run on.
             </p>
             <p>
               Every case study on this site follows the same process: a real
@@ -46,6 +55,22 @@ export function About() {
                 <dd className="mt-1 text-[15px] text-foreground">{fact.value}</dd>
               </div>
             ))}
+
+            <div>
+              <dt className="font-mono text-[11px] uppercase tracking-[0.1em] text-faint">
+                Currently learning
+              </dt>
+              <dd className="mt-2 flex flex-wrap gap-2">
+                {currentlyLearning.map((topic) => (
+                  <span
+                    key={topic}
+                    className="rounded-full border border-line px-3 py-1 text-[13px] text-foreground"
+                  >
+                    {topic}
+                  </span>
+                ))}
+              </dd>
+            </div>
           </dl>
         </Reveal>
       </div>

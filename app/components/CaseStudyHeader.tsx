@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Project } from "@/lib/projects";
 import { Reveal } from "./Reveal";
 
@@ -23,6 +24,20 @@ export function CaseStudyHeader({ project }: { project: Project }) {
           {project.tagline}
         </p>
       </Reveal>
+
+      {project.cover && (
+        <Reveal delay={40}>
+          <div className="relative mt-10 aspect-[16/10] overflow-hidden rounded-2xl border border-line bg-paper">
+            <Image
+              src={project.cover}
+              alt={project.coverAlt ?? project.title}
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
+        </Reveal>
+      )}
 
       {facts.length > 0 && (
         <Reveal delay={60}>
