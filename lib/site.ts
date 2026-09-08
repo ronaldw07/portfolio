@@ -14,7 +14,7 @@ export const site = {
   ],
 
   links: {
-    linkedin: "https://www.linkedin.com/in/REPLACE-ME",
+    linkedin: "https://www.linkedin.com/in/ronaldwen/",
     github: "https://github.com/ronaldw07",
     email: "ronaldlee4248@gmail.com",
   },
