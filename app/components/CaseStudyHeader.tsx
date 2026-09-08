@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Project } from "@/lib/projects";
+import { ProjectLogo } from "./ProjectLogo";
 import { Reveal } from "./Reveal";
 
 export function CaseStudyHeader({ project }: { project: Project }) {
@@ -12,14 +13,21 @@ export function CaseStudyHeader({ project }: { project: Project }) {
   return (
     <header className="mx-auto max-w-3xl px-6 pt-36 pb-14 sm:px-0 sm:pt-44">
       <Reveal>
-        {project.status && (
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
-            {project.status}
-          </p>
-        )}
-        <h1 className="mt-4 font-serif text-4xl leading-[1.1] sm:text-5xl">
-          {project.title}
-        </h1>
+        <div className="flex items-center gap-4">
+          {project.logo && (
+            <ProjectLogo src={project.logo} alt={`${project.title} logo`} size="lg" />
+          )}
+          <div>
+            {project.status && (
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
+                {project.status}
+              </p>
+            )}
+            <h1 className="mt-1 font-serif text-4xl leading-[1.1] sm:text-5xl">
+              {project.title}
+            </h1>
+          </div>
+        </div>
         <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-muted">
           {project.tagline}
         </p>

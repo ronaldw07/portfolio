@@ -31,6 +31,7 @@ export type ProjectMeta = {
   order: number;
   cover?: string;
   coverAlt?: string;
+  logo?: string;
 };
 
 export type Project = ProjectMeta & {
@@ -97,6 +98,7 @@ function toMeta(slug: string, data: Record<string, unknown>): ProjectMeta {
     order: typeof data.order === "number" ? data.order : 99,
     cover: asString("cover") || undefined,
     coverAlt: asString("coverAlt") || undefined,
+    logo: asString("logo") || undefined,
   };
 }
 
