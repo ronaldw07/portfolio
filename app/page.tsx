@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <About />
       <WorkIndex projects={projects} />
       <OpenSource />
-      <About />
     </>
   );
 }
