@@ -1,0 +1,125 @@
+---
+title: Framelight
+tagline: Real-time composition guidance for people who take photos on their phone, not with a camera.
+blurb: An Expo camera app that scores your framing in real time and nudges you toward a stronger photo before you tap the shutter.
+role: Founder — product, design, on-device ML, mobile engineering
+context: Solo, personal product
+timeline: 2026 — active MVP
+status: Shipping
+stack: ["React Native", "Expo Router", "TFLite", "VisionCamera", "OpenCV", "MLKit"]
+links:
+  - { label: "GitHub", href: "https://github.com/ronaldw07/framelight-app" }
+metrics:
+  - { value: "224×224", label: "on-device model input" }
+  - { value: "0", label: "network calls to take a photo" }
+order: 1
+---
+
+## Summary
+
+Framelight is a camera app that watches your live preview, scores nearby
+reframings against the one you're holding, and overlays a direction to move
+in — left, closer, lower — until the frame in front of you is the strongest
+one available. Everything runs on-device: a bundled TFLite composition
+model, MLKit face detection, and OpenCV edge detection for scenes without a
+person in them. No photo ever leaves the phone to get scored.
+
+## The problem
+
+Phone cameras solved exposure, focus, and stabilization years ago. They
+did nothing for composition, which is still entirely on the person holding
+the phone — and most people never learned it. The result is a photo that's
+technically sharp and instinctively unsatisfying, and no error message ever
+tells you why. You just don't post it.
+
+Photography apps that do address composition mostly do it after the fact —
+crop suggestions in an editor, or a course you'd have to go take. By the
+time you're editing, the moment that would have made the photo is gone.
+
+## Target user
+
+Someone taking photos with their phone as their primary camera — not a
+hobbyist with a DSLR who already has the vocabulary, and not someone who
+only wants filters. Specifically: people who take a lot of photos of people
+and scenes casually (travel, friends, everyday moments) and can feel when a
+photo is a little off but can't name what to change, in the three seconds
+before they'd normally just tap the shutter anyway.
+
+## Competitors
+
+- **Built-in camera apps (iOS/Android)** — handle exposure and focus, say
+  nothing about framing.
+- **Editing apps (Snapseed, Lightroom mobile)** — composition help arrives
+  after the shot, as a crop tool, when the alternative angle is already gone.
+- **Photography-education apps and content** — teach composition rules in
+  the abstract, disconnected from the specific frame in front of you right now.
+
+None of them close the loop *while the camera is still open*. That gap is
+the whole product.
+
+## Insight
+
+Composition feedback is only useful if it arrives before the shutter, and
+it only feels useful if it's specific to *this* frame, not a rule you have
+to translate yourself. That means the guidance has to be computed from the
+live preview, continuously, fast enough to feel like part of holding the
+phone rather than a report you wait for.
+
+The second insight was architectural: composition scoring doesn't need a
+huge model. A model trained to rank *candidate crops of the same scene*
+against each other is a much smaller problem than "is this a good photo,"
+and it's small enough to run on-device at interactive speed.
+
+## Solution
+
+The app classifies each frame into one of two modes and generates
+subject-aware candidate crops accordingly:
+
+- **Human mode** — MLKit detects a dominant face, expands it into an
+  approximate portrait subject box, and generates portrait-oriented crops
+  around it.
+- **Scene mode** — no face detected, so OpenCV edge detection estimates the
+  scene's focal region and generates thirds, center, tight, and wide crops
+  around it.
+
+A TFLite model (`nima_composition.tflite`, MobileNetV2 preprocessing, 5-bin
+output) scores each candidate; those scores fuse with heuristic composition
+features. The best candidate becomes an overlay: a direction, not a grade.
+When the current frame keeps beating its alternatives across several
+frames, that's treated as a local maximum and the app tells you you're
+ready — a deliberately narrow claim: best among the generated candidates,
+not "the best possible photo."
+
+## Distribution
+
+Pre-launch. The current build is intentionally scoped to prove the
+feedback loop works end to end on real hardware before investing in
+capture polish, App Store packaging, or marketing — distribution work
+starts once the core loop holds up across enough real devices and lighting
+conditions that it's worth someone's first impression.
+
+## Adapting to user feedback
+
+The known-limitations list *is* the feedback loop right now: running the
+app on my own shooting sessions surfaced that motion verification wasn't
+real yet — "Perfect" and "Good" states were driven by score history, not
+actual verified camera movement, which meant the guidance could tell you
+"closer" after you'd already moved closer. That's now the top item on the
+roadmap, ahead of any visual polish, because a guidance system that's
+occasionally lying about direction is worse than one that says less.
+
+Human detection being face-only (not full-body) was the other real gap —
+found by pointing the camera at group shots and portraits where the face
+box under-represented the actual subject, which is next after motion
+verification.
+
+## Process
+
+Built feature-first around the actual runtime loop rather than the file
+structure: `camera-capture` for the UI/permissions/preview, and
+`composition-guidance` — analyzer, subject detection, candidate crops,
+TFLite scoring, overlay — as the feature that actually matters, with
+`entities` and `shared` kept deliberately thin underneath. Every native
+dependency (VisionCamera, TFLite, OpenCV, worklets) gets validated with
+`tsc --noEmit`, lint, and a real native run before it ships, because this
+class of bug never shows up in Expo Go.

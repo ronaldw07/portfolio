@@ -1,0 +1,131 @@
+---
+title: Mindtrail
+tagline: A research assistant that remembers what you asked it last week and uses it without being told to.
+blurb: Ask it something, it searches and answers with sources — and every later question is answered with what it already learned.
+role: Solo — product, retrieval design, full-stack engineering
+context: Solo, personal product
+timeline: 2026
+status: Shipping
+stack: ["Python", "Chroma", "SQLite", "Groq"]
+links:
+  - { label: "GitHub", href: "https://github.com/ronaldw07/mindtrail" }
+metrics:
+  - { value: "10/10", label: "distractor entries in the retrieval eval" }
+  - { value: "0", label: "model calls to load the Today dashboard" }
+order: 2
+---
+
+## Summary
+
+Mindtrail is a research assistant with memory. Ask it a question, it
+searches the web, writes a sourced answer, tags it with a topic, and
+stores it. Ask something related next week, and the answer is composed
+*with* what it already learned — without you re-explaining anything. A
+local browser view groups everything you've ever asked by topic, and a
+project system turns a thread of questions into roadmaps, documents, and
+a profile the assistant uses to personalize its answers.
+
+## The problem
+
+Every research-agent demo answers one question well and forgets it the
+moment you close the terminal. The interesting failure isn't question one,
+it's question five: does the system know you already asked about vector
+databases when you now ask how Chroma differs from Pinecone? Most tools
+don't, so you re-ask, re-explain, and re-read sources you already read.
+The second failure is presentation — a flat log of Q&A pairs in
+chronological order is not something you can actually browse later; it's
+just a longer and longer scrollback.
+
+## Target user
+
+Someone doing self-directed, ongoing research or planning — job search,
+learning a new technical area, tracking a personal project — where the
+questions compound over weeks rather than being one-off lookups. The
+person who'd use `mindtrail advice` already has documents, notes, and a
+history in the tool; the value only shows up after the second or third
+session, not the first.
+
+## Competitors
+
+- **Perplexity / ChatGPT with browsing** — excellent single-turn sourced
+  answers, but no persistent structured memory across sessions; you're the
+  one who has to remember and re-paste context.
+- **NotebookLM** — strong at synthesizing a fixed set of documents you feed
+  it, but not built around an accumulating stream of your own questions
+  over time, or around planning next steps from them.
+- **Plain note-taking apps** — capture everything, retrieve nothing;
+  no automatic topic grouping, no recall, no synthesis.
+
+Mindtrail's bet is that memory plus retrieval plus a browsable structure is
+worth more than a better single answer.
+
+## Insight
+
+Retrieval-with-memory is only valuable if two things are both true:
+irrelevant past entries don't leak into an answer they shouldn't touch,
+and relevant ones are found reliably even when nothing else prompts the
+system to look. So the eval that matters isn't "does it answer the
+question" — it's "does it find the one relevant prior entry out of ten
+plausible distractors." That's a much harder and more honest test than
+most memory demos run, and it's the one this project reports.
+
+The second insight, from actually using it: a dashboard that costs a model
+call every time you open it teaches you to avoid opening it. **Today**
+reads only what's already stored or cached — nothing on it calls a model —
+so it's free to check obsessively, and the one place a call does happen
+("Brief me") is opt-in and visibly separate.
+
+## Solution
+
+Every question runs through a pipeline: web search → sourced synthesis →
+automatic topic assignment (reusing existing topics instead of
+fragmenting new ones) → storage in a retrieval index. A later question
+searches that index first; anything relevant gets composed into the
+prompt and surfaced in the answer as a "Built on:" trail — persisted, not
+just shown once, so reopening the chat later still shows its lineage as
+clickable chips.
+
+Around that core sits a project system: roadmaps as a draggable dependency
+graph (generate, accept/reject, drag-to-link, due dates, recurring steps),
+a per-project "What's next" that only regenerates when the project has
+actually moved, and a profile the assistant uses to personalize answers.
+Every chat-driven action anywhere in the app — roadmap, project, profile —
+follows the same rule: the model proposes a structured change as a card,
+nothing is written until you click Accept, and Accept goes through the
+same endpoint a manual edit would use. A chat-driven change and a
+hand-typed one are indistinguishable to the server, which is what makes it
+safe to let the model touch state at all.
+
+## Distribution
+
+Ships as a local CLI and browser app — `mindtrail ask`, `mindtrail chat`,
+`mindtrail web` — no server to run, no account. Distribution today is
+direct: it's the tool I use daily for my own research and internship
+search, which doubles as the harshest possible product test.
+
+## Adapting to user feedback
+
+The eval numbers *are* the feedback: both evals originally reported a
+flattering score that turned out to be measuring an easier task than the
+real one, and instead of quietly tightening the number, the corrected,
+harder version and the reasoning behind the correction are documented
+inline in the README. Prediction (guessing your next question) is reported
+as a negative result — it doesn't work reliably enough to rely on — rather
+than shipped quietly and left for a user to discover it's unreliable.
+
+Using it day to day surfaced smaller but real gaps: notes created from the
+CLI weren't showing up in the browser's sidebar because they had no
+conversation attached — both paths now always attach one. Photos and
+scanned documents don't extract, because there's no vision-capable model
+on the account this runs against — verified directly against the API
+rather than assumed, and stated as a limitation instead of failing silently.
+
+## Process
+
+Built CLI-first, browser second — the browser is Today, projects, and
+roadmap on top of the same storage the CLI writes to, not a separate app.
+Every dashboard-style view (Today, What's next, daily summary) follows one
+rule: only call the model when the underlying data has actually changed,
+never on every open. Evals live in `eval/`, run with `python -m
+eval.runner` at temperature 0 so results are reproducible, with a held-out
+dev split kept separate from the reported test split.
