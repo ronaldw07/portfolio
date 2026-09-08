@@ -30,4 +30,22 @@ export const openSourceEntries: OpenSourceEntry[] = [
     prUrl: "https://github.com/icssc/AntAlmanac/pull/1432",
     merged: true,
   },
+  {
+    repo: "google/ml-flashpoint",
+    repoUrl: "https://github.com/google/ml-flashpoint",
+    title: "Abstracted torch.distributed APIs in CheckpointLoader",
+    description:
+      "A memory-first ML checkpointing library. Refactored the loader so distributed-training APIs sit behind one boundary instead of being called directly throughout.",
+    prUrl: "https://github.com/google/ml-flashpoint/pull/47",
+    merged: true,
+  },
+  {
+    repo: "google/ml-flashpoint",
+    repoUrl: "https://github.com/google/ml-flashpoint",
+    title: "Extracted local-aware Megatron save logic",
+    description:
+      "Pulled the Megatron adapter's local-checkpoint save path into its own helper function, separating it from the general save flow it was previously tangled into.",
+    prUrl: "https://github.com/google/ml-flashpoint/pull/43",
+    merged: true,
+  },
 ];

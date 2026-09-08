@@ -2,9 +2,9 @@
 title: Boring Notch
 tagline: Shipping real fixes into a macOS utility with thousands of existing users, on someone else's codebase and someone else's review bar.
 blurb: A run of shipped fixes and a live audio visualizer on a fork of the open-source MacBook notch utility.
-role: Contributor — Swift/macOS engineering
+role: "Contributor: Swift/macOS engineering"
 context: Open source, fork of TheBoredTeam/boring.notch
-timeline: 2026 — active
+timeline: "2026, active"
 status: In progress
 stack: ["Swift", "SwiftUI", "AppKit", "MediaPlayer"]
 links:
@@ -17,8 +17,8 @@ order: 3
 
 Boring Notch turns the MacBook notch into a music control center, HUD
 replacement, clipboard shelf, and calendar surface. I'm working on a fork,
-`live-audio-visualizer`, that started as one feature — a real-time audio
-visualizer reacting to whatever's playing — and turned into a running list
+`live-audio-visualizer`, that started as one feature, a real-time audio
+visualizer reacting to whatever's playing, and turned into a running list
 of shipped fixes across Now Playing state, the clipboard shelf, and window
 positioning, each one a bug real users would hit.
 
@@ -28,14 +28,14 @@ An always-visible menu-bar utility has a much less forgiving bar than most
 apps: it's on screen constantly, so any flicker, wrong elapsed-time count,
 or dropped state is visible every single time you glance at the top of your
 screen. The specific problem this branch chases is that the Now Playing
-state — what's playing, whether it's paused, the elapsed time — has to stay
+state (what's playing, whether it's paused, the elapsed time) has to stay
 correct across pause, resume, and a browser tab silently taking over the
 system's "now playing" claim from the app that was actually playing audio.
 None of that is exotic, but all of it is easy to get subtly wrong.
 
 ## Target user
 
-The existing Boring Notch user base — people who already run a MacBook
+The existing Boring Notch user base: people who already run a MacBook
 notch utility and expect it to be reliable enough to ignore, not something
 they have to work around. For this branch specifically: anyone who plays
 music through the notch and expects pause/resume, elapsed time, and which
@@ -44,27 +44,27 @@ that isn't a filler animation but actually driven by the audio playing.
 
 ## Competitors
 
-- **NotchNook and similar notch utilities** — cover some of the same
+- **NotchNook and similar notch utilities**: cover some of the same
   surface (media controls, HUD) with varying reliability; Boring Notch's
   open-source model and active Discord/Crowdin community are its edge.
-- **Apple's built-in Now Playing** — reliable but minimal, no visualizer,
+- **Apple's built-in Now Playing**: reliable but minimal, no visualizer,
   no clipboard shelf, no HUD replacement.
 
 The differentiation isn't feature count, it's whether the always-on
-surface stays correct under real usage — pausing, switching apps,
-opening a browser tab with autoplay — which is exactly the class of bug
+surface stays correct under real usage: pausing, switching apps,
+opening a browser tab with autoplay, which is exactly the class of bug
 this branch works through.
 
 ## Insight
 
 Bugs in an always-visible utility are found by using it, not by reading
-the code — a stopwatch that silently jumps to zero on pause, or elapsed
+the code: a stopwatch that silently jumps to zero on pause, or elapsed
 time that rewinds a second on resume, only shows up when you're actually
 listening to music and glance up. So the effective process here was: use
 the app as a daily driver, notice the thing that looks wrong, trace it to
-the specific state transition causing it, and fix that transition — not
-the visible symptom — so the same class of bug doesn't recur elsewhere in
-the Now Playing controller.
+the specific state transition causing it, and fix that transition, not
+just the visible symptom, so the same class of bug doesn't recur elsewhere
+in the Now Playing controller.
 
 ## Solution
 
@@ -82,7 +82,7 @@ instead of drifting or getting shoved off-screen.
 ## Distribution
 
 Distribution here is the upstream PR, not an app store or a marketing
-push — the fork exists to eventually merge back into
+push. The fork exists to eventually merge back into
 `TheBoredTeam/boring.notch`, where the existing Discord and Crowdin
 community becomes the distribution channel for free. The branch isn't
 merged yet; it's still being hardened against the kind of usage that
@@ -96,7 +96,7 @@ instead of the real playing app was found by using the notch while
 browsing with autoplay video open. The elapsed-time issues were found the
 same way, by pausing and resuming during normal listening and noticing the
 number lie. That direct-usage loop is why the commit history reads as a
-string of specific, narrow fixes rather than one big rewrite — each one is
+string of specific, narrow fixes rather than one big rewrite: each one is
 sized to the exact transition that broke.
 
 ## Process

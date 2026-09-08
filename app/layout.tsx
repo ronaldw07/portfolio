@@ -22,11 +22,11 @@ const playfairDisplay = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Ronald Wen — Product engineer",
-    template: "%s — Ronald Wen",
+    default: "Ronald Wen, Product engineer",
+    template: "%s, Ronald Wen",
   },
   description:
-    "Product-minded software engineer. Case studies on Mindtrail, Framelight, and Boring Notch — the problem, the insight, and the process behind each.",
+    "Product-minded software engineer. Case studies on Mindtrail, Framelight, and Boring Notch: the problem, the insight, and the process behind each.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

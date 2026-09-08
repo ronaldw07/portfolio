@@ -9,7 +9,7 @@ export function OpenSource() {
       <Reveal>
         <h2 className="font-serif text-2xl sm:text-3xl">Open source</h2>
         <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-muted">
-          Shipping into code I don&apos;t own — someone else&apos;s review bar,
+          Shipping into code I don&apos;t own: someone else&apos;s review bar,
           someone else&apos;s users already depending on it.
         </p>
       </Reveal>

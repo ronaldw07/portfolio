@@ -3,7 +3,8 @@ import { Reveal } from "./Reveal";
 const facts = [
   { label: "Based in", value: "Irvine, CA" },
   { label: "Studying", value: "Computer Science, UC Irvine" },
-  { label: "Working on", value: "Product-minded engineering" },
+  { label: "Fellowship", value: "Break Through Tech AI Studio" },
+  { label: "Currently learning", value: "Statistical inference & experimental design" },
 ];
 
 export function About() {
@@ -11,13 +12,20 @@ export function About() {
     <section id="about" className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
       <div className="grid gap-12 sm:grid-cols-[1fr_auto] sm:gap-20">
         <Reveal>
-          <h2 className="font-serif text-2xl sm:text-3xl">About</h2>
+          <h2 className="font-serif text-2xl sm:text-3xl">About me</h2>
           <div className="mt-6 max-w-xl space-y-4 text-[15px] leading-relaxed text-muted">
             <p>
               I care about the whole lifecycle of a product: the problem worth
               solving, the person it&apos;s actually for, and whether the thing
               I shipped changed their behavior. The code is the part I enjoy
               most, but it&apos;s in service of that, not the point of it.
+            </p>
+            <p>
+              I&apos;m part of Break Through Tech&apos;s AI Studio fellowship,
+              on a small team building Chewy, a machine learning system for
+              detecting AI-generated text. Outside of that I&apos;m working
+              through statistical inference and experimental design, the
+              rigor behind claiming an insight is real rather than noise.
             </p>
             <p>
               Every case study on this site follows the same process: a real
