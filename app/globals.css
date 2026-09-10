@@ -8,7 +8,7 @@
   /* Extensions that give the portfolio its own identity */
   --paper: #fbf9f5;
   --muted: #6f6a63;
-  --faint: #97918a;
+  --faint: #6d6860; /* darkened from #97918a: original failed WCAG AA (2.8:1) on --background */
   --line: #e3dcd2;
   --accent: #a8492c;
 

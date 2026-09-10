@@ -27,11 +27,7 @@ export function Nav() {
       }}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-10">
-        <Link
-          href="/"
-          className="pressable font-serif text-[17px] tracking-tight"
-          aria-label="Home"
-        >
+        <Link href="/" className="pressable font-serif text-[17px] tracking-tight">
           {site.name}
         </Link>
 

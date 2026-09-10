@@ -16,6 +16,13 @@ export function Hero() {
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
+
+      <a
+        href="#contact"
+        className="pressable mt-10 inline-block rounded-full bg-foreground px-7 py-3 text-[14px] text-background"
+      >
+        Get in touch
+      </a>
     </section>
   );
 }
