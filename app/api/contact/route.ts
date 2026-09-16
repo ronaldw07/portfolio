@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { site } from "@/lib/site";
+import { isRateLimited } from "@/lib/rate-limit";
 
 const MIN_SUBMIT_TIME_MS = 1500;
 
@@ -13,6 +14,14 @@ const contactSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { ok: false, errors: { message: ["Too many requests, try again later"] } },
+      { status: 429 },
+    );
+  }
+
   const body: unknown = await request.json().catch(() => null);
   const parsed = contactSchema.safeParse(body);
 
