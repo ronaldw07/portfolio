@@ -89,6 +89,17 @@ html {
   transform: translateY(0);
 }
 
+/* Appears after the particles have had time to assemble into the name. */
+.scroll-cue {
+  animation: fade-in 700ms var(--ease-out) 1400ms both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
 /* Pressable elements confirm the interface heard the press. */
 .pressable {
   transition: transform 160ms var(--ease-out);

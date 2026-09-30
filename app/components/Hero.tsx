@@ -2,7 +2,7 @@ import { site } from "@/lib/site";
 
 export function Hero() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pt-40 pb-24 sm:px-10 sm:pt-52 sm:pb-32">
+    <section className="mx-auto max-w-6xl px-6 pt-24 pb-24 sm:px-10 sm:pt-32 sm:pb-32">
       <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
         {site.role} · {site.location}
       </p>
