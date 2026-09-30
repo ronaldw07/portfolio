@@ -3,7 +3,7 @@ import { Reveal } from "./Reveal";
 const facts = [
   { label: "Based in", value: "Irvine, CA" },
   { label: "Studying", value: "Computer Science, UC Irvine" },
-  { label: "Fellowship", value: "Break Through Tech AI Studio" },
+  { label: "Fellowship", value: "Break Through Tech AI Studio × Chewy" },
 ];
 
 const currentlyLearning = [
@@ -30,8 +30,12 @@ export function About() {
             </p>
             <p>
               I&apos;m part of Break Through Tech&apos;s AI Studio fellowship,
-              on a small team building Chewy, a machine learning system for
-              detecting AI-generated text. Outside of that, I&apos;m
+              on a team working with Chewy to detect AI-generated text. We
+              train on HC3, a corpus of paired human and ChatGPT answers,
+              building from TF-IDF and logistic regression up to a Keras
+              neural net, then stress test it against paraphrased AI text
+              to see where detectors break. The end product is a live
+              Streamlit demo anyone can paste text into. Outside of that, I&apos;m
               deliberately building range across the full product stack:
               management, design, and engineering, plus the AI, agent, and
               infrastructure layers most products now run on.
