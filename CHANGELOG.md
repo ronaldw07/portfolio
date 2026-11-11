@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-11 (travel)
+
+- Added a "Places I love" section (China, Japan) with a Travel link in the nav.
+
 ## 2026-11-11
 
 ### Mindtrail case study

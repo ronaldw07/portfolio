@@ -3,6 +3,7 @@ import { Intro } from "./components/Intro";
 import { WorkIndex } from "./components/WorkIndex";
 import { OpenSource } from "./components/OpenSource";
 import { About } from "./components/About";
+import { Travel } from "./components/Travel";
 import { getAllProjects } from "@/lib/projects";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <About />
       <WorkIndex projects={projects} />
       <OpenSource />
+      <Travel />
     </>
   );
 }
