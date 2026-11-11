@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-11-11
+
+### Mindtrail case study
+
+- Reframed Mindtrail around what it actually is: a visual map of goals (colored
+  paths of stops) with an assistant beside it that plans, advises, and edits the
+  map as you talk. Today is now described as the daily layer on top.
+- New tagline, blurb, summary, problem, target user, competitors, and insight
+  (show the whole plan, the assistant works on the plan, ask before assuming,
+  show the source).
+- Solution now leads with "A map of every goal" and "An assistant that plans
+  with you", followed by zooming into a step, Today, showing the source, and
+  designing for failure.
+- Added a screenshot of the path map with the assistant open, taken on sample
+  data.
+
 ## 2026-11-10
 
 ### Mindtrail case study

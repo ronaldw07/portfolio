@@ -1,7 +1,7 @@
 ---
 title: Mindtrail
-tagline: A personal planner that turns everything on your plate into one clear day.
-blurb: "One daily plan for school, a job search, and personal goals, with an assistant that builds it alongside you."
+tagline: A visual map for your goals, with an assistant that plans and advises beside you.
+blurb: "Turn a big goal into a map of paths and stops you can see, with an assistant that helps plan it, gives advice, and edits it with you."
 role: "Solo: product design, UX, and full-stack engineering"
 context: Solo, personal product
 timeline: "Aug 2026 – present"
@@ -19,94 +19,110 @@ order: 2
 
 ## Summary
 
-Mindtrail brings classes from Canvas, recruiting updates from Gmail, events
-from Google Calendar, and long-term goals into a single Today view. A built-in
-assistant breaks big goals into steps, remembers what you tell it, and keeps
-the plan current as life changes. It runs locally in the browser, with no
-account to create.
+Mindtrail turns a big goal, like landing a design internship, into a map you
+can see. Each goal is a journey. Each journey is a few colored paths, and each
+path is a line of stops that ends at what you're aiming for. Beside the map, an
+assistant helps you plan: it asks what you actually want, gives advice based on
+what it knows about you, and changes the map as you talk, so you watch the plan
+take shape. A Today view pulls the next steps, classes, and recruiting emails
+into one clear day. It runs locally in the browser, with no account to create.
 
 ## The problem
 
-My week lived in five places: assignments in Canvas, recruiting emails in
-Gmail, events in Calendar, notes in one app, and goals in my head. Every tool
-was a list. None of them answered the question that matters each morning:
-*what should I do today?*
+Big goals are vague and long, and a to-do list hides their shape. A list can't
+show that "apply to 10 companies" depends on "tailor my resume," or how far
+along the whole thing is. Chat assistants give good advice, but it scrolls away
+as text, and the plan itself lives nowhere. My own week was split the same way:
+assignments in Canvas, recruiting emails in Gmail, events in Calendar, goals in
+my head. I could never see the whole plan, or what to do next.
 
 ## Target user
 
-Students and early-career people balancing school, a job search, and
-personal goals at the same time. Their plans span months, but they get
-decided one day at a time, usually in the five minutes before class.
+Students and early-career people working toward a goal that takes months,
+like a job search, a portfolio, or getting fit, while school and everything
+else keeps going. They need a plan they can see at a glance, advice they can
+trust, and an answer to what to do today.
 
 ## Competitors
 
-- **Todoist and Apple Reminders**: fast capture and good check-off, but most
-  tasks are typed in by hand, and nothing connects a to-do to the bigger goal
-  it serves.
-- **Notion**: flexible enough to build any planner, which means you have to
-  build it, then keep it up to date yourself.
-- **ChatGPT and other chat assistants**: helpful in the moment, but they don't
-  know your deadlines, can't change your plan, and lose the thread between
-  conversations.
+- **Todoist and Apple Reminders**: fast capture and good check-off, but they
+  show a flat list. Nothing shows the route to a goal or how far along you are.
+- **Notion**: flexible enough to build a roadmap, which means you build it,
+  then keep it up to date yourself.
+- **ChatGPT and other chat assistants**: helpful in the moment, but the advice
+  stays in the conversation. They can't see your plan, can't change it, and lose
+  the thread between conversations.
 
-Mindtrail's bet: the plan should assemble itself from the places your life
-already happens, and the assistant should edit that plan directly instead of
-describing changes for you to make.
+Mindtrail's bet: the plan should be something you can see, and the assistant
+should edit that plan directly instead of describing changes for you to make.
 
 ## Insight
 
 Four design principles came out of using it every day:
 
-- **Today is for doing.** The first thing you see is what to do, not a
-  dashboard. Nothing on Today waits on a model, so it opens instantly.
-- **Never lose what someone typed.** Every error leaves a clear next step.
-- **Show where everything came from.** Anything created automatically shows
-  its source.
+- **Show the whole plan.** A goal should look like a route, with where you are,
+  what's next, and where it ends.
+- **The assistant works on the plan.** Advice should become a change on the map,
+  not a paragraph to copy out.
 - **Ask before assuming.** One good question beats generic advice.
+- **Show where everything came from.** Anything created automatically shows its
+  source.
 
 ## Solution
 
-### Rethinking Today
+### A map of every goal
 
-The first version opened on a painting that filled the screen, a wall of
-widgets, and a featured card that repeated the first to-do. Checking off a task
-reloaded the page and made it vanish.
+Each journey opens as a map. Its paths are colored lines of stops, in order,
+ending at a flag for the goal. A filled circle with a check is done. A solid one
+is accepted. A dashed one is a suggestion still waiting for your yes. The next
+stop is tagged, so you can see where you are in a second. Click a stop to open
+its page, tick the circle to finish it, or drag it along its line, or onto
+another one, to reorder. A "Next up" list across all paths answers what to do
+next.
 
-Now the header is half the height and the to-dos come right after it, grouped
-into Classes, Journeys, and Other. Star three
+![A journey as a map: colored paths of stops, the next stop on each tagged, with the assistant open beside it](/media/mindtrail/map.png)
+
+### An assistant that plans with you
+
+The assistant sits beside the map and works on it.
+
+- **Asks first.** Before suggesting a plan, it asks one question with tappable
+  answers drawn from your own notes.
+- **Advises with context.** It knows your goals, what you've told it, and what
+  you've uploaded, so advice fits you.
+- **Changes the map.** Ask for a new path, a reordered step, or a daily goal and
+  it appears on the map. Deletions wait for your yes.
+- **Remembers.** Preferences you mention become saved facts you can see and
+  edit, so it never asks twice.
+- **Reads what you share.** Drop in a resume or paste a screenshot.
+- **Adapts.** Record a result and it offers to rebuild the rest of the route
+  around it.
+
+![The assistant asking which kind of internship before suggesting daily goals](/media/mindtrail/assistant.png)
+
+### Zooming into a step
+
+Open any stop to see its own route of smaller steps and daily goals. Long routes
+show the next three stops, with the rest one click away, and only the next stop
+shows its full instructions. Dropdowns and date pickers became one plain-language
+box: type *"measure my jump by Friday"* and the assistant fills in the title,
+the how-to, what to record, and the due date.
+
+![A step's route: the next three stops, the next one expanded, everything else one line](/media/mindtrail/step.png)
+
+### Today, for doing
+
+The map shows the whole plan. Today shows only what to do now. The first version
+opened on a painting that filled the screen, a wall of widgets, and a featured
+card that repeated the first to-do. Now the header is half the height and the
+to-dos come right after it, grouped into Classes, Journeys, and Other. Star three
 as today's focus and a live "2 of 3 done" count tracks them. Checking a to-do
-crosses it off in place. The trash can moves it to an archive where it can
-be put back, and a "Remove when done" switch suits people who prefer a clean
-list. Cluttered class titles like *W7M13: Design and Tech: Lighting [D10:
+crosses it off in place, and the trash can moves it to an archive where it can
+be put back. Cluttered class titles like *W7M13: Design and Tech: Lighting [D10:
 INTRO TO THEATRE F26]* became *Design and Tech: Lighting*, with the course
 name underneath.
 
 ![Today: three starred to-dos up top, then Classes and Journeys, each a single clean line](/media/mindtrail/today.png)
-
-### Plans that stay readable
-
-Journeys break big goals, like landing a summer internship, into steps and
-smaller to-dos. Long routes show the next three stops with the rest one click
-away, and only the next stop shows its full instructions. Dropdowns and date
-pickers became one plain-language box: type *"measure my jump by Friday"* and
-the assistant fills in the title, the how-to, what to record, and the due
-date.
-
-![A step's route: the next three stops, the next one expanded, everything else one line](/media/mindtrail/step.png)
-
-### An assistant that knows you
-
-- **Asks first.** Before suggesting a plan, it asks one question with
-  tappable answers drawn from your own notes.
-- **Remembers.** Preferences you mention become saved facts you can see and
-  edit, so it never asks twice.
-- **Reads what you share.** Drop in a resume or paste a screenshot.
-- **Gets things done.** Changes happen as you ask, and deletions wait for
-  your yes.
-- **Adapts.** Record a result and it offers to rebuild the rest of the plan
-  around it.
-
-![The assistant asking which kind of internship before suggesting daily goals](/media/mindtrail/assistant.png)
 
 ### Showing the source
 
@@ -123,13 +139,8 @@ Daily use surfaced the moments that break trust: a dropped connection that
 froze the chat on "Thinking…", and emails that failed silently in the
 background. Every request now ends in a clear state you can act on, the chat
 keeps accepting messages while it works, and the app switches to a backup
-model when one is unavailable.
-
-### Motion and detail
-
-Checking off, removing, and opening cards use short, eased transitions.
-Replies settle in rather than pop, and all motion respects reduced-motion
-settings.
+model when one is unavailable. All motion is short and eased, and respects
+reduced-motion settings.
 
 ## Distribution
 
