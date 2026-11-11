@@ -6,7 +6,7 @@ import { Reveal } from "./Reveal";
 /** Drop the photo at public/media/about/dog.jpg; it shows up once the file exists. */
 const DOG_PHOTO = "/media/about/dog.jpg";
 /** The dog's name, shown under the photo. */
-const DOG_NAME = "";
+const DOG_NAME = "Coco";
 
 const facts = [
   { label: "Based in", value: "Irvine, CA" },
