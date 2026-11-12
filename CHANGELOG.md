@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-11 (Chora)
+
+- Replaced the Boring Notch case study with Chora, the free macOS notch app
+  built on boring.notch: per-app volume, an editable calendar, a timer, and
+  music, with screenshots from the Chora site.
+- About: based in San Francisco, studying CS Informatics, and "Product
+  engineering" now comes first under Currently learning. Location also updated
+  in the hero and footer.
+
 ## 2026-11-11 (travel)
 
 - Added a "Places I love" section (China, Japan) with a Travel link in the nav.

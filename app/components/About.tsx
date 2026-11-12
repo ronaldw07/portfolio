@@ -9,15 +9,15 @@ const DOG_PHOTO = "/media/about/dog.jpg";
 const DOG_NAME = "Coco";
 
 const facts = [
-  { label: "Based in", value: "Irvine, CA" },
-  { label: "Studying", value: "Computer Science, UC Irvine" },
+  { label: "Based in", value: "San Francisco, CA" },
+  { label: "Studying", value: "CS Informatics, UC Irvine" },
   { label: "Fellowship", value: "Break Through Tech AI Studio × Chewy" },
 ];
 
 const currentlyLearning = [
+  "Product engineering",
   "Product management",
   "Product design",
-  "Product engineering",
   "AI",
   "Agents",
   "Infrastructure",
