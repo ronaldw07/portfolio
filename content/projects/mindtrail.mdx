@@ -1,132 +1,169 @@
 ---
 title: Mindtrail
-tagline: A research assistant that remembers what you asked it last week and uses it without being told to.
-blurb: "Ask it something, it searches and answers with sources, and every later question is answered with what it already learned."
-role: "Solo: product, retrieval design, full-stack engineering"
+tagline: A visual map for your goals, with an assistant that plans and advises beside you.
+blurb: "Turn a big goal into a map of paths and stops you can see, with an assistant that helps plan it, gives advice, and edits it with you."
+role: "Solo: product design, UX, and full-stack engineering"
 context: Solo, personal product
-timeline: 2026
+timeline: "Aug 2026 – present"
 status: Shipping
-stack: ["Python", "Chroma", "SQLite", "Groq"]
+stack: ["Python", "SQLite", "Chroma", "JavaScript", "Gmail", "Google Calendar", "Canvas"]
 logo: /media/mindtrail/logo.png
 links:
   - { label: "GitHub", href: "https://github.com/ronaldw07/mindtrail" }
 metrics:
-  - { value: "10/10", label: "distractor entries in the retrieval eval" }
-  - { value: "0", label: "model calls to load the Today dashboard" }
+  - { value: "100%", label: "memory recall on a 45-question held-out test" }
+  - { value: "0", label: "model calls before Today appears" }
+  - { value: "<2s", label: "typical assistant reply" }
 order: 2
 ---
 
 ## Summary
 
-Mindtrail is a research assistant with memory. Ask it a question, it
-searches the web, writes a sourced answer, tags it with a topic, and
-stores it. Ask something related next week, and the answer is composed
-*with* what it already learned, without you re-explaining anything. A
-local browser view groups everything you've ever asked by topic, and a
-project system turns a thread of questions into roadmaps, documents, and
-a profile the assistant uses to personalize its answers.
+Mindtrail turns a big goal, like landing a design internship, into a map you
+can see. Each goal is a journey. Each journey is a few colored paths, and each
+path is a line of stops that ends at what you're aiming for. Beside the map, an
+assistant helps you plan: it asks what you actually want, gives advice based on
+what it knows about you, and changes the map as you talk, so you watch the plan
+take shape. A Today view pulls the next steps, classes, and recruiting emails
+into one clear day. It runs locally in the browser, with no account to create.
 
 ## The problem
 
-Every research-agent demo answers one question well and forgets it the
-moment you close the terminal. The interesting failure isn't question one,
-it's question five: does the system know you already asked about vector
-databases when you now ask how Chroma differs from Pinecone? Most tools
-don't, so you re-ask, re-explain, and re-read sources you already read.
-The second failure is presentation: a flat log of Q&A pairs in
-chronological order is not something you can actually browse later; it's
-just a longer and longer scrollback.
+Big goals are vague and long, and a to-do list hides their shape. A list can't
+show that "apply to 10 companies" depends on "tailor my resume," or how far
+along the whole thing is. Chat assistants give good advice, but it scrolls away
+as text, and the plan itself lives nowhere. My own week was split the same way:
+assignments in Canvas, recruiting emails in Gmail, events in Calendar, goals in
+my head. I could never see the whole plan, or what to do next.
 
 ## Target user
 
-Someone doing self-directed, ongoing research or planning (job search,
-learning a new technical area, tracking a personal project) where the
-questions compound over weeks rather than being one-off lookups. The
-person who'd use `mindtrail advice` already has documents, notes, and a
-history in the tool; the value only shows up after the second or third
-session, not the first.
+Students and early-career people working toward a goal that takes months,
+like a job search, a portfolio, or getting fit, while school and everything
+else keeps going. They need a plan they can see at a glance, advice they can
+trust, and an answer to what to do today.
 
 ## Competitors
 
-- **Perplexity / ChatGPT with browsing**: excellent single-turn sourced
-  answers, but no persistent structured memory across sessions; you're the
-  one who has to remember and re-paste context.
-- **NotebookLM**: strong at synthesizing a fixed set of documents you feed
-  it, but not built around an accumulating stream of your own questions
-  over time, or around planning next steps from them.
-- **Plain note-taking apps**: capture everything, retrieve nothing;
-  no automatic topic grouping, no recall, no synthesis.
+- **Todoist and Apple Reminders**: fast capture and good check-off, but they
+  show a flat list. Nothing shows the route to a goal or how far along you are.
+- **Notion**: flexible enough to build a roadmap, which means you build it,
+  then keep it up to date yourself.
+- **ChatGPT and other chat assistants**: helpful in the moment, but the advice
+  stays in the conversation. They can't see your plan, can't change it, and lose
+  the thread between conversations.
 
-Mindtrail's bet is that memory plus retrieval plus a browsable structure is
-worth more than a better single answer.
+Mindtrail's bet: the plan should be something you can see, and the assistant
+should edit that plan directly instead of describing changes for you to make.
 
 ## Insight
 
-Retrieval-with-memory is only valuable if two things are both true:
-irrelevant past entries don't leak into an answer they shouldn't touch,
-and relevant ones are found reliably even when nothing else prompts the
-system to look. So the eval that matters isn't "does it answer the
-question," it's "does it find the one relevant prior entry out of ten
-plausible distractors." That's a much harder and more honest test than
-most memory demos run, and it's the one this project reports.
+Four design principles came out of using it every day:
 
-The second insight, from actually using it: a dashboard that costs a model
-call every time you open it teaches you to avoid opening it. **Today**
-reads only what's already stored or cached (nothing on it calls a model),
-so it's free to check obsessively, and the one place a call does happen
-("Brief me") is opt-in and visibly separate.
+- **Show the whole plan.** A goal should look like a route, with where you are,
+  what's next, and where it ends.
+- **The assistant works on the plan.** Advice should become a change on the map,
+  not a paragraph to copy out.
+- **Ask before assuming.** One good question beats generic advice.
+- **Show where everything came from.** Anything created automatically shows its
+  source.
 
 ## Solution
 
-Every question runs through a pipeline: web search, sourced synthesis,
-automatic topic assignment (reusing existing topics instead of
-fragmenting new ones), storage in a retrieval index. A later question
-searches that index first; anything relevant gets composed into the
-prompt and surfaced in the answer as a "Built on:" trail, persisted, not
-just shown once, so reopening the chat later still shows its lineage as
-clickable chips.
+### A map of every goal
 
-Around that core sits a project system: roadmaps as a draggable dependency
-graph (generate, accept/reject, drag-to-link, due dates, recurring steps),
-a per-project "What's next" that only regenerates when the project has
-actually moved, and a profile the assistant uses to personalize answers.
-Every chat-driven action anywhere in the app (roadmap, project, profile)
-follows the same rule: the model proposes a structured change as a card,
-nothing is written until you click Accept, and Accept goes through the
-same endpoint a manual edit would use. A chat-driven change and a
-hand-typed one are indistinguishable to the server, which is what makes it
-safe to let the model touch state at all.
+Each journey opens as a map. Its paths are colored lines of stops, in order,
+ending at a flag for the goal. A filled circle with a check is done. A solid one
+is accepted. A dashed one is a suggestion still waiting for your yes. The next
+stop is tagged, so you can see where you are in a second. Click a stop to open
+its page, tick the circle to finish it, or drag it along its line, or onto
+another one, to reorder. A "Next up" list across all paths answers what to do
+next.
+
+![A journey as a map: colored paths of stops, the next stop on each tagged, with the assistant open beside it](/media/mindtrail/map.png)
+
+### An assistant that plans with you
+
+The assistant sits beside the map and works on it.
+
+- **Asks first.** Before suggesting a plan, it asks one question with tappable
+  answers drawn from your own notes.
+- **Advises with context.** It knows your goals, what you've told it, and what
+  you've uploaded, so advice fits you.
+- **Changes the map.** Ask for a new path, a reordered step, or a daily goal and
+  it appears on the map. Deletions wait for your yes.
+- **Remembers.** Preferences you mention become saved facts you can see and
+  edit, so it never asks twice.
+- **Reads what you share.** Drop in a resume or paste a screenshot.
+- **Adapts.** Record a result and it offers to rebuild the rest of the route
+  around it.
+
+![The assistant asking which kind of internship before suggesting daily goals](/media/mindtrail/assistant.png)
+
+### Zooming into a step
+
+Open any stop to see its own route of smaller steps and daily goals. Long routes
+show the next three stops, with the rest one click away, and only the next stop
+shows its full instructions. Dropdowns and date pickers became one plain-language
+box: type *"measure my jump by Friday"* and the assistant fills in the title,
+the how-to, what to record, and the due date.
+
+![A step's route: the next three stops, the next one expanded, everything else one line](/media/mindtrail/step.png)
+
+### Today, for doing
+
+The map shows the whole plan. Today shows only what to do now. The first version
+opened on a painting that filled the screen, a wall of widgets, and a featured
+card that repeated the first to-do. Now the header is half the height and the
+to-dos come right after it, grouped into Classes, Journeys, and Other. Star three
+as today's focus and a live "2 of 3 done" count tracks them. Checking a to-do
+crosses it off in place, and the trash can moves it to an archive where it can
+be put back. Cluttered class titles like *W7M13: Design and Tech: Lighting [D10:
+INTRO TO THEATRE F26]* became *Design and Tech: Lighting*, with the course
+name underneath.
+
+![Today: three starred to-dos up top, then Classes and Journeys, each a single clean line](/media/mindtrail/today.png)
+
+### Showing the source
+
+Job to-dos are created automatically from recruiting emails, so trust
+matters. Each one names the company, flags when that application has closed,
+and opens a card with a preview of the original email and a one-click link to
+it in Gmail.
+
+![A job to-do's card: the company, the application status, and the email it came from](/media/mindtrail/source-card.png)
+
+### Designing for failure
+
+Daily use surfaced the moments that break trust: a dropped connection that
+froze the chat on "Thinking…", and emails that failed silently in the
+background. Every request now ends in a clear state you can act on, the chat
+keeps accepting messages while it works, and the app switches to a backup
+model when one is unavailable. All motion is short and eased, and respects
+reduced-motion settings.
 
 ## Distribution
 
-Ships as a local CLI and browser app: `mindtrail ask`, `mindtrail chat`,
-`mindtrail web`, no server to run, no account. Distribution today is
-direct: it's the tool I use daily for my own research and internship
-search, which doubles as the harshest possible product test.
+Mindtrail runs locally as a browser app, with no server to host and no
+account to create. It connects to Gmail, Google Calendar, and Canvas with your
+own sign-in, and everything it learns stays on your machine.
 
 ## Adapting to user feedback
 
-The eval numbers *are* the feedback: both evals originally reported a
-flattering score that turned out to be measuring an easier task than the
-real one, and instead of quietly tightening the number, the corrected,
-harder version and the reasoning behind the correction are documented
-inline in the README. Prediction (guessing your next question) is reported
-as a negative result, meaning it doesn't work reliably enough to rely on,
-rather than shipped quietly and left for a user to discover it's unreliable.
-
-Using it day to day surfaced smaller but real gaps: notes created from the
-CLI weren't showing up in the browser's sidebar because they had no
-conversation attached; both paths now always attach one. Photos and
-scanned documents don't extract, because there's no vision-capable model
-on the account this runs against, verified directly against the API
-rather than assumed, and stated as a limitation instead of failing silently.
+I was Mindtrail's first daily user, and the redesign above is a record of
+that feedback: the page reload that made checked-off to-dos vanish, the route
+that grew to fifteen stops, the suggestions that ignored what I'd already
+said, and the job to-dos left over from applications that had already
+closed. Each one became a design change I could verify against the same
+screen that showed the problem.
 
 ## Process
 
-Built CLI-first, browser second: the browser is Today, projects, and
-roadmap on top of the same storage the CLI writes to, not a separate app.
-Every dashboard-style view (Today, What's next, daily summary) follows one
-rule: only call the model when the underlying data has actually changed,
-never on every open. Evals live in `eval/`, run with `python -m
-eval.runner` at temperature 0 so results are reproducible, with a held-out
-dev split kept separate from the reported test split.
+Whenever something felt wrong, I captured the screen, redesigned it, and
+checked the fix against that same screen, using my own classes, applications,
+and goals rather than mock content. The screenshots on this page use sample
+data. Underneath, memory search
+was tuned against a 90-question benchmark split into a tuning set and a
+held-out set, and it found the right past note for every held-out question.
+Designed, built, and shipped solo, from problem framing to front end to back
+end.

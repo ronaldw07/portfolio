@@ -1,4 +1,12 @@
+import fs from "node:fs";
+import path from "node:path";
+import Image from "next/image";
 import { Reveal } from "./Reveal";
+
+/** Drop the photo at public/media/about/dog.jpg; it shows up once the file exists. */
+const DOG_PHOTO = "/media/about/dog.jpg";
+/** The dog's name, shown under the photo. */
+const DOG_NAME = "Coco";
 
 const facts = [
   { label: "Based in", value: "Irvine, CA" },
@@ -16,6 +24,8 @@ const currentlyLearning = [
 ];
 
 export function About() {
+  // Checked on each render, so adding the photo needs no restart.
+  const hasDogPhoto = fs.existsSync(path.join(process.cwd(), "public", DOG_PHOTO));
   return (
     <section id="about" className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
       <div className="grid gap-12 sm:grid-cols-[1fr_auto] sm:gap-20">
@@ -47,6 +57,31 @@ export function About() {
               front of people, and what changed after they used it.
             </p>
           </div>
+
+          <h3 className="mt-12 font-mono text-[11px] uppercase tracking-[0.1em] text-faint">
+            Outside of work
+          </h3>
+          <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted">
+            You&apos;ll usually find me playing volleyball, at the gym, or
+            trying a new food spot (add me on Beli). And I love playing with
+            my dog{DOG_NAME ? `, ${DOG_NAME}` : ""}.
+          </p>
+          {hasDogPhoto && (
+            <figure className="mt-6 max-w-[280px]">
+              <span className="block overflow-hidden rounded-xl border border-line bg-paper">
+                <Image
+                  src={DOG_PHOTO}
+                  alt={DOG_NAME ? `${DOG_NAME}, my dog` : "My dog"}
+                  width={560}
+                  height={560}
+                  className="aspect-square h-auto w-full object-cover"
+                />
+              </span>
+              <figcaption className="mt-2 text-[13px] text-faint">
+                {DOG_NAME || "My dog"}
+              </figcaption>
+            </figure>
+          )}
         </Reveal>
 
         <Reveal delay={80}>
