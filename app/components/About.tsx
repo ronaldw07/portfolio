@@ -5,6 +5,8 @@ import { Reveal } from "./Reveal";
 
 /** Drop the photo at public/media/about/dog.jpg; it shows up once the file exists. */
 const DOG_PHOTO = "/media/about/dog.jpg";
+/** Photo of me, shown under the intro text. */
+const ME_PHOTO = "/media/about/me.jpg";
 /** The dog's name, shown under the photo. */
 const DOG_NAME = "Coco";
 
@@ -28,7 +30,7 @@ export function About() {
   const hasDogPhoto = fs.existsSync(path.join(process.cwd(), "public", DOG_PHOTO));
   return (
     <section id="about" className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
-      <div className="grid gap-12 sm:grid-cols-[1fr_auto] sm:gap-20">
+      <div className="grid gap-12 sm:grid-cols-[1fr_280px] sm:gap-20">
         <Reveal>
           <h2 className="font-serif text-2xl sm:text-3xl">About me</h2>
           <div className="mt-6 max-w-xl space-y-4 text-[15px] leading-relaxed text-muted">
@@ -58,34 +60,19 @@ export function About() {
             </p>
           </div>
 
-          <h3 className="mt-12 font-mono text-[11px] uppercase tracking-[0.1em] text-faint">
-            Outside of work
-          </h3>
-          <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted">
-            You&apos;ll usually find me playing volleyball, at the gym, or
-            trying a new food spot (add me on Beli). And I love playing with
-            my dog{DOG_NAME ? `, ${DOG_NAME}` : ""}.
-          </p>
-          {hasDogPhoto && (
-            <figure className="mt-6 max-w-[280px]">
-              <span className="block overflow-hidden rounded-xl border border-line bg-paper">
-                <Image
-                  src={DOG_PHOTO}
-                  alt={DOG_NAME ? `${DOG_NAME}, my dog` : "My dog"}
-                  width={560}
-                  height={560}
-                  className="aspect-square h-auto w-full object-cover"
-                />
-              </span>
-              <figcaption className="mt-2 text-[13px] text-faint">
-                {DOG_NAME || "My dog"}
-              </figcaption>
-            </figure>
-          )}
+          <span className="mt-8 block max-w-[420px] overflow-hidden rounded-xl border border-line bg-paper">
+            <Image
+              src={ME_PHOTO}
+              alt="Ronald Wen"
+              width={959}
+              height={711}
+              className="h-auto w-full"
+            />
+          </span>
         </Reveal>
 
-        <Reveal delay={80}>
-          <dl className="flex flex-col gap-6 sm:min-w-[220px]">
+        <Reveal delay={80} className="flex flex-col gap-10">
+          <dl className="flex flex-col gap-6">
             {facts.map((fact) => (
               <div key={fact.label}>
                 <dt className="font-mono text-[11px] uppercase tracking-[0.1em] text-faint">
@@ -111,6 +98,33 @@ export function About() {
               </dd>
             </div>
           </dl>
+
+          <div>
+            <h3 className="font-mono text-[11px] uppercase tracking-[0.1em] text-faint">
+              Outside of work
+            </h3>
+            <p className="mt-2 max-w-[280px] text-[15px] leading-relaxed text-muted">
+              You&apos;ll usually find me playing volleyball, at the gym, or
+              trying a new food spot (add me on Beli). And I love playing with
+              my dog{DOG_NAME ? `, ${DOG_NAME}` : ""}.
+            </p>
+            {hasDogPhoto && (
+              <figure className="mt-6 max-w-[280px]">
+                <span className="block overflow-hidden rounded-xl border border-line bg-paper">
+                  <Image
+                    src={DOG_PHOTO}
+                    alt={DOG_NAME ? `${DOG_NAME}, my dog` : "My dog"}
+                    width={560}
+                    height={560}
+                    className="aspect-square h-auto w-full object-cover"
+                  />
+                </span>
+                <figcaption className="mt-2 text-[13px] text-faint">
+                  {DOG_NAME || "My dog"}
+                </figcaption>
+              </figure>
+            )}
+          </div>
         </Reveal>
       </div>
     </section>
