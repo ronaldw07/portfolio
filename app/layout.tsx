@@ -24,7 +24,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 const description =
-  "Product-minded software engineer. Case studies on Mindtrail, Framelight, and Boring Notch: the problem, the insight, and the process behind each.";
+  "Product-minded software engineer. Case studies on Mindtrail, Framelight, and Chora: the problem, the insight, and the process behind each.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

@@ -1,7 +1,7 @@
 export const site = {
   name: "Ronald Wen",
   role: "Product engineer",
-  location: "Irvine, CA",
+  location: "San Francisco, CA",
   url: "https://ronaldwen.vercel.app",
 
   /** The one line someone remembers after they close the tab. */

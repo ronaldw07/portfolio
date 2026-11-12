@@ -1,0 +1,118 @@
+---
+title: Chora
+tagline: A volume mixer, calendar, timer, and music player that live in your Mac's notch.
+blurb: A free macOS app that turns the notch into a per-app volume mixer, an editable calendar, a timer, and a music player.
+role: "Product design and Swift/macOS engineering"
+context: Free macOS app, built on the open-source boring.notch
+timeline: "2026, active"
+status: Shipping
+stack: ["Swift", "SwiftUI", "AppKit", "MediaPlayer", "Google Calendar"]
+logo: /media/chora/logo.png
+links:
+  - { label: "Website", href: "https://ronaldw07.github.io/chora-site/" }
+  - { label: "Source", href: "https://github.com/ronaldw07/boring.notch" }
+  - { label: "Upstream", href: "https://github.com/TheBoredTeam/boring.notch" }
+order: 3
+---
+
+## Summary
+
+Chora puts the small things you reach for all day into the space at the top of
+your Mac. A master volume slider and one for each app, your day as a timeline
+you can edit, a timer, and your music with album art, a live visualizer, and
+synced lyrics. I started from the open-source boring.notch and built the parts
+I wanted from my own notch. It's free to download, and updates install
+themselves.
+
+![The notch expanded: a master volume slider and a separate slider for each app](/media/chora/volume.png)
+
+## The problem
+
+The notch is prime real estate that most apps ignore, and the controls I use
+constantly are scattered. Turning down one app means turning down everything.
+Checking my next event means opening a calendar. A timer means another app.
+Each one is small, but together they break focus dozens of times a day.
+
+## Target user
+
+People who live on a MacBook with a notch and want small, frequent actions one
+glance away: students, designers, and developers who juggle music, calls,
+meetings, and focus sessions at once.
+
+## Competitors
+
+- **Notch utilities like NotchNook**: cover media controls and shortcuts, but
+  not per-app volume or a calendar you can edit.
+- **macOS itself**: Control Center has one volume slider for the whole system,
+  and no timeline you can drag around.
+
+Chora's bet: the notch should be a place to do things, not just look at them.
+
+## Insight
+
+Four design principles guide it:
+
+- **One glance, one action.** Everything fits in a short, wide space, so each
+  tab does one thing and does it fast.
+- **Control what you'd otherwise open an app for.** Per-app volume, dragging an
+  event, undoing a reset timer.
+- **Sharing space gracefully.** Music and a running timer sit in the notch
+  together instead of fighting for it.
+- **Stay out of the way.** It should be reliable enough to forget about, and
+  updates should install without you thinking about them.
+
+## Solution
+
+### Volume, per app
+
+A master slider plus a slider for each app. Turn Discord down without touching
+Spotify.
+
+### A calendar you can edit
+
+Your day is one wide timeline. Drag events to move or resize them, click for
+details, and see your Google Tasks alongside.
+
+![Your day as a timeline in the notch, with events you can drag to move or resize](/media/chora/calendar.png)
+
+### A timer that forgives mistakes
+
+Lengths down to the second, a list of recent timers, a smooth progress ring,
+and undo when you reset by accident.
+
+![The timer tab](/media/chora/timer.png)
+
+### Music that shares the space
+
+Album art, a live visualizer, and synced lyrics. When a timer is running, it
+sits next to the music instead of replacing it.
+
+![The music tab with album art and a live visualizer](/media/chora/music.png)
+
+### Quick to move around
+
+Switch tabs with ⌥1 to ⌥5. A shelf holds files you drop on the notch, and
+clipboard history gets back anything you copied.
+
+## Distribution
+
+Chora is a free download as a .dmg for Apple silicon Macs on macOS 14 or later.
+macOS blocks apps it hasn't verified, so the first run needs a one-line
+Terminal command. The site puts the install steps right under the download
+button so nobody gets stuck. After that, signed updates install from inside the
+app. There's a Discord for setups and early versions, and a feedback form for
+bugs and requests.
+
+## Adapting to user feedback
+
+The site has a public "Coming soon" list: switching your music to this Mac,
+connecting Google Calendar directly for faster updates, and finishing the Chora
+name and icon inside the app. A "Your idea" box invites requests that go
+straight onto that list. I use Chora every day, and the first things I built
+were the ones I kept missing.
+
+## Process
+
+Built on boring.notch, an open-source project by TheBoredTeam (GPL-3.0), which
+Chora credits and links to. I design and build it, and I ship small updates
+often, with a changelog on the site.
