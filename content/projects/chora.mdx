@@ -13,8 +13,8 @@ links:
   - { label: "Source", href: "https://github.com/ronaldw07/boring.notch" }
   - { label: "Upstream", href: "https://github.com/TheBoredTeam/boring.notch" }
 metrics:
-  - { value: "19", label: "versions shipped since September 2026" }
-  - { value: "12", label: "signed releases delivered by in-app auto-update" }
+  - { value: "20", label: "versions shipped since September 2026" }
+  - { value: "13", label: "signed releases delivered by in-app auto-update" }
 order: 1
 ---
 
@@ -78,8 +78,9 @@ Spotify.
 ### A calendar you can edit
 
 Your day as one wide timeline, or top to bottom like a phone calendar. Drag
-events to move them, pull an edge to change the time, click for details, undo
-any change, and see your Google Tasks alongside.
+events to move them, pull an edge to change the time, click for details and a
+one-click Join for video calls, add an event by typing it, undo any change, and
+see your Google Tasks alongside.
 
 ![Your day as a timeline in the notch, with events you can drag to move or resize](/media/chora/calendar.png)
 
@@ -121,6 +122,17 @@ button then becomes a shrink button, and expanding again returns to the size
 you last chose, so the notch remembers your preference instead of making you
 redo it.
 
+### Typing instead of a form
+
+A new-event form needs a title field, a date picker, start and end times, and a
+calendar menu, which is a full window's worth of controls in a space the height
+of a few lines. So adding an event is one text box: type "Lunch with Sam 1pm"
+or "Gym tomorrow 6-7pm". The risk with plain language is guessing wrong, so a
+line under the box shows exactly what will be created (title, day, times,
+calendar) before you press Return, and Undo takes it back. A time with no day
+goes on the day you're looking at, because that's the day you're thinking
+about.
+
 ### Undo instead of dialogs
 
 Dragging or deleting an event in a space this small invites mistakes, but a
@@ -149,7 +161,7 @@ Chora every day, and the first things I built were the ones I kept missing.
 
 I run Chora like a small product team of one. Every change starts as a written
 plan, gets tried on my own Mac, and ships only after it works. Releases are
-small and frequent: 19 versions since September 2026, each with a
+small and frequent: 20 versions since September 2026, each with a
 plain-language changelog entry that becomes the in-app update note, the GitHub
 release, and the website's "What's new" at once. One release script builds,
 signs, and publishes each version, so shipping a fix takes minutes and reaches
