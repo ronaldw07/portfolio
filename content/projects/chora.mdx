@@ -147,6 +147,39 @@ against a rare one. So moves and resizes happen straight away, delete only
 asks for a second tap on the same button, and every change can be undone, one
 step at a time.
 
+## Explorations
+
+Wireframes of the options I weighed for real decisions, each showing what I
+picked and why. Labels mark what shipped and what was dropped.
+
+### Return after Backspace
+
+Backspace on an open event asks "Delete this event?". The question was what
+Return should do next. Return deletes: Backspace then Return reads as one
+deliberate gesture, Escape is the way out, and Undo catches the slip.
+
+![Two frames: Return confirms the delete (chosen) or Return cancels it](/media/chora/frame-enter.png)
+
+### Getting past macOS on first install
+
+![Two frames: pasting a Terminal command (dropped) or clicking Open Anyway in System Settings (shipped)](/media/chora/frame-install.png)
+
+### Where the resize grabber lives
+
+The first version of the grabber pill moved it with an offset, which shifts only
+what's drawn. The shipped version puts it in the real layout, so what you see
+and what you can grab are in the same place.
+
+![Two frames: an offset that moved only the drawing, and the pill placed in the real layout](/media/chora/frame-grabber.png)
+
+### Two shapes for the day
+
+![The wide timeline and the top-to-bottom day, side by side](/media/chora/frame-day.png)
+
+### Drag to create, step by step
+
+![Four frames: press on an empty spot, drag to draw the event, name it in a small box, and it's saved with Undo](/media/chora/frame-drag.png)
+
 ## Distribution
 
 Chora is a free download as a .dmg for Apple silicon Macs on macOS 14 or later.
@@ -163,6 +196,48 @@ The site has a public "Coming soon" list, and a "Your idea" box sends requests
 straight onto it. The feedback form asks for what I need to act on a report:
 steps to reproduce, the app and macOS version, and what you expected. I use
 Chora every day, and the first things I built were the ones I kept missing.
+
+## Heuristic review
+
+I went through the calendar tab against Nielsen's usability heuristics, using
+the real app. Two problems are still open, two are fixed, and several were
+already covered.
+
+### Still open
+
+- **The Undo message hides behind the details box.** When an event's details
+  are open, their dark backdrop sits over the Undo message, so the first click
+  on Undo just closes the box. Undo replaced confirmation dialogs, so the
+  safety net has to be reachable. *(User control and freedom.)*
+- **⌥1 to ⌥5 are invisible.** The shortcuts that switch tabs aren't shown
+  anywhere in the app, so only people who read the release notes find them.
+  Showing each tab's number when you hover over it would fix it.
+  *(Recognition rather than recall; flexibility and efficiency.)*
+
+### Fixed
+
+- **The notch closed too early.** It closed too soon after the pointer left it.
+  It now waits 2 seconds, or closes right away once the pointer is more than
+  70 points away. *(User control and
+  freedom.)*
+- **The resize arrows flickered**, so it was hard to tell whether a drag would
+  resize. They now stay steady.
+  *(Visibility of system status.)*
+
+### Already covered
+
+- **Error prevention:** deleting asks for a second press, and changing a
+  repeating event asks whether you mean this one or the whole series.
+- **User control:** every change can be undone, and Escape cancels whatever
+  you're in the middle of.
+- **Helping people recover from errors:** when a save or delete fails, it says
+  why in plain words: "This calendar may be read-only."
+
+<Callout label="Next">
+Testing with people who aren't me. The plan is five friends, each installing
+Chora and creating, editing, and deleting events, while I watch where they get
+stuck.
+</Callout>
 
 ## Process
 
