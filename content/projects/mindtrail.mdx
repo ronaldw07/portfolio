@@ -142,6 +142,28 @@ keeps accepting messages while it works, and the app switches to a backup
 model when one is unavailable. All motion is short and eased, and respects
 reduced-motion settings.
 
+## Use of AI
+
+The assistant is AI inside a workflow, not a chat window next to one. It works
+on the same map you do, which raises the stakes: a wrong answer in a chat is
+text you can ignore, while a wrong edit changes your plan. So the design keeps
+you in charge at every step:
+
+- **It asks before acting.** Before suggesting a plan, it asks one question,
+  with tappable answers drawn from your own notes, instead of guessing.
+- **Nothing is lost without your yes.** Suggested stops appear dashed until you
+  accept them, and deletions wait for your yes.
+- **It shows its sources.** Anything created from an email names where it came
+  from and links back to the original.
+- **It fails visibly.** Every request ends in a state you can see and act on,
+  and when one model is unavailable it switches to a backup instead of hanging.
+- **Its memory is yours to edit.** What it remembers about you is a list of
+  saved facts you can see and edit.
+
+<Callout label="Principle">
+The assistant can change your plan, but it can't take anything away without asking.
+</Callout>
+
 ## Distribution
 
 Mindtrail runs locally as a browser app, with no server to host and no
