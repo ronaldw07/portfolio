@@ -13,8 +13,8 @@ links:
   - { label: "Source", href: "https://github.com/ronaldw07/boring.notch" }
   - { label: "Upstream", href: "https://github.com/TheBoredTeam/boring.notch" }
 metrics:
-  - { value: "20", label: "versions shipped since September 2026" }
-  - { value: "13", label: "signed releases delivered by in-app auto-update" }
+  - { value: "21", label: "versions shipped since September 2026" }
+  - { value: "14", label: "signed releases delivered by in-app auto-update" }
 order: 1
 ---
 
@@ -79,8 +79,8 @@ Spotify.
 
 Your day as one wide timeline, or top to bottom like a phone calendar. Drag
 events to move them, pull an edge to change the time, click for details and a
-one-click Join for video calls, add an event by typing it, undo any change, and
-see your Google Tasks alongside.
+one-click Join for video calls, drag on an empty spot or type a sentence to add
+an event, undo any change, and see your Google Tasks alongside.
 
 ![Your day as a timeline in the notch, with events you can drag to move or resize](/media/chora/calendar.png)
 
@@ -133,6 +133,11 @@ calendar) before you press Return, and Undo takes it back. A time with no day
 goes on the day you're looking at, because that's the day you're thinking
 about.
 
+Typing is fast when you know the time; dragging is faster when you're looking
+at a gap. So pressing on an empty part of the day and dragging draws the event
+right where it goes, and a small box asks only for what the drag can't tell
+you: a title, which calendar, a place, a note.
+
 ### Undo instead of dialogs
 
 Dragging or deleting an event in a space this small invites mistakes, but a
@@ -161,7 +166,7 @@ Chora every day, and the first things I built were the ones I kept missing.
 
 I run Chora like a small product team of one. Every change starts as a written
 plan, gets tried on my own Mac, and ships only after it works. Releases are
-small and frequent: 20 versions since September 2026, each with a
+small and frequent: 21 versions since September 2026, each with a
 plain-language changelog entry that becomes the in-app update note, the GitHub
 release, and the website's "What's new" at once. One release script builds,
 signs, and publishes each version, so shipping a fix takes minutes and reaches
