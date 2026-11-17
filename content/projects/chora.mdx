@@ -13,8 +13,8 @@ links:
   - { label: "Source", href: "https://github.com/ronaldw07/boring.notch" }
   - { label: "Upstream", href: "https://github.com/TheBoredTeam/boring.notch" }
 metrics:
-  - { value: "21", label: "versions shipped since September 2026" }
-  - { value: "14", label: "signed releases delivered by in-app auto-update" }
+  - { value: "22", label: "versions shipped since September 2026" }
+  - { value: "15", label: "signed releases delivered by in-app auto-update" }
 order: 1
 ---
 
@@ -80,7 +80,8 @@ Spotify.
 Your day as one wide timeline, or top to bottom like a phone calendar. Drag
 events to move them, pull an edge to change the time, click for details and a
 one-click Join for video calls, drag on an empty spot or type a sentence to add
-an event, undo any change, and see your Google Tasks alongside.
+an event, edit or delete it from its details, undo any change, and see your
+Google Tasks alongside.
 
 ![Your day as a timeline in the notch, with events you can drag to move or resize](/media/chora/calendar.png)
 
@@ -166,11 +167,13 @@ Chora every day, and the first things I built were the ones I kept missing.
 
 I run Chora like a small product team of one. Every change starts as a written
 plan, gets tried on my own Mac, and ships only after it works. Releases are
-small and frequent: 21 versions since September 2026, each with a
+small and frequent: 22 versions since September 2026, each with a
 plain-language changelog entry that becomes the in-app update note, the GitHub
 release, and the website's "What's new" at once. One release script builds,
-signs, and publishes each version, so shipping a fix takes minutes and reaches
-everyone through the in-app updater.
+signs, and publishes each version, so shipping a fix takes minutes. Chora runs
+for days without quitting, so instead of waiting for a quit, the updater
+installs a new version as soon as it downloads: a fix reaches everyone within
+the hour.
 
 Built on boring.notch, an open-source project by TheBoredTeam (GPL-3.0), which
 Chora credits and links to.
