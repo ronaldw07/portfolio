@@ -1,0 +1,103 @@
+---
+title: Approvals
+tagline: A concept for asking for something at work and always knowing where it stands.
+blurb: "A design concept for an enterprise request and approval flow: one sentence to ask, one screen to decide, and a status anyone can read."
+role: "Solo: product and interaction design"
+context: Self-initiated design concept
+timeline: "Nov 2026"
+status: Concept
+stack: ["Wireframes", "Flow mapping"]
+logo: /media/approvals/logo.png
+links: []
+metrics: []
+order: 4
+---
+
+## Summary
+
+Approvals is a design concept, not a shipped product. It explores the kind of
+request and approval flow most companies run on: someone needs a software
+license, a piece of equipment, or travel, and the request passes through a
+manager and sometimes finance before anything happens. The concept has three
+parts: a one-sentence request with a preview, a decision card that gives an
+approver everything they need on one screen, and a status page that always
+says who has the request and what happens next. No one has used it yet, and
+there are no results to report.
+
+![The flow: request, manager, a spend-limit check, finance, done, and the paths back for questions and declines](/media/approvals/flow.png)
+
+## The problem
+
+Approval flows tend to fail in the same three places.
+
+- **Asking is slow.** A long form asks for things the system already knows,
+  like who your manager is and which cost center you belong to.
+- **Deciding takes three tools.** The approver gets a link, then has to check
+  the budget, the policy, and whether the team already has one somewhere else.
+- **Waiting is blind.** The requester sees "Pending" with no name, no date, and
+  no idea what comes next, so they chase it by email.
+
+## Target user
+
+Two people with opposite needs. The requester wants to ask once and stop
+thinking about it. The approver gets many requests and wants to make a good
+decision fast, without opening a spreadsheet for each one.
+
+## Insight
+
+- **The system should fill in what it knows.** People should only describe
+  what they need and why.
+- **Show before sending.** A preview of exactly what goes out and who will see
+  it makes a short input safe.
+- **Every state names a person and a next step.** "With Finance since Tuesday"
+  beats "Pending L2".
+- **No dead ends.** A decline always carries a reason, and a question keeps the
+  request's place in line.
+
+## Solution
+
+### Asking in one sentence
+
+The request is a single text box: "A yearly license for a diagramming tool,
+$180, for the onboarding redesign." Underneath, a preview shows how it was
+read: the item, the cost, who it goes to, and the reason. Any line can be
+corrected before sending. This borrows the pattern I shipped in
+[Chora](/work/chora), where one text box with a live preview replaced a
+new-event form.
+
+![A long request form beside a one-sentence request with a preview of what will be sent](/media/approvals/request.png)
+
+### Deciding on one screen
+
+The approver's card puts the requester's reason, the cost, the budget left,
+the policy check, whether the team already owns one, and who's next on one
+screen. The actions are Approve, Ask a question, and Decline, and Decline asks
+for a reason that goes back with the request. Approvers who are away can hand
+their queue to a delegate.
+
+![The approver's queue and a decision card with cost, budget, policy, and the three actions](/media/approvals/approver.png)
+
+### Knowing where it stands
+
+The requester's page answers three questions in one line: who has it, since
+when, and what happens next. Below it, a history keeps every question and
+answer, so nobody has to search their inbox to understand a delay.
+
+![The requester's status: a step tracker showing Finance as the current step, and a history of questions and approvals](/media/approvals/status.png)
+
+## Open questions
+
+These are the things I'd want to learn before building any of it:
+
+- **Does one sentence hold up for big requests?** Travel or hiring may need
+  more structure than a sentence and a preview can carry.
+- **What do approvers actually check?** The decision card is my guess. Watching
+  a few approvers work through a real queue would show which facts matter.
+- **Where should it live?** Approvers may prefer to decide inside the chat or
+  email they already use, with this page as the record.
+
+## Process
+
+Mapped the flow first, including every way a request can come back, then
+sketched the requester's and approver's screens as wireframes. Names and
+amounts in the frames are sample data.
