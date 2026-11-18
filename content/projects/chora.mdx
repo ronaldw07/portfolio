@@ -13,8 +13,8 @@ links:
   - { label: "Source", href: "https://github.com/ronaldw07/boring.notch" }
   - { label: "Upstream", href: "https://github.com/TheBoredTeam/boring.notch" }
 metrics:
-  - { value: "22", label: "versions shipped since September 2026" }
-  - { value: "15", label: "signed releases delivered by in-app auto-update" }
+  - { value: "23", label: "versions shipped since September 2026" }
+  - { value: "16", label: "signed releases delivered by in-app auto-update" }
 order: 1
 ---
 
@@ -77,11 +77,14 @@ Spotify.
 
 ### A calendar you can edit
 
-Your day as one wide timeline, or top to bottom like a phone calendar. Drag
-events to move them, pull an edge to change the time, click for details and a
-one-click Join for video calls, drag on an empty spot or type a sentence to add
-an event, edit or delete it from its details, undo any change, and see your
-Google Tasks alongside.
+One day, 4 days, a week or a month, with the weather for each day. The day
+runs as one wide timeline or top to bottom like a phone calendar. Drag events
+to move them (across days in the week), pull the bottom edge to change the
+end, click for details and a one-click Join for video calls, drag on an empty
+spot or type a sentence to add an event, make it repeat or remind you,
+duplicate, edit or delete it, and undo any change. Search a year of events,
+answer Google invites, add guests and a Meet link, and see your Google Tasks
+alongside.
 
 ![Your day as a timeline in the notch, with events you can drag to move or resize](/media/chora/calendar.png)
 
@@ -101,8 +104,10 @@ timer is running, it sits next to the music instead of replacing it.
 
 ### Quick to move around
 
-Switch tabs with ⌥1 to ⌥5. A shelf holds files you drop on the notch, and
-clipboard history gets back anything you copied.
+Hover the notch and press 1 to 5 to switch tabs (or ⌥1 to ⌥5 from anywhere
+while it's open), and the calendar has Google Calendar's own shortcuts. A
+shelf holds files you drop on the notch, and clipboard history gets back
+anything you copied.
 
 ## Design decisions
 
@@ -113,7 +118,25 @@ the whole day at a glance. But people read their day top to bottom, the way
 phone and Google calendars show it, and a wide strip makes long days and
 overlapping events hard to scan. Rather than pick one, the latest release adds
 a top-to-bottom view behind a single button. Overlapping events sit side by
-side, and the top and bottom edges of an event change its time.
+side, and pulling an event's bottom edge changes when it ends.
+
+### Borrowing habits people already have
+
+Most people who'd use a calendar in the notch already use Google Calendar, so
+where Chora could either invent its own way or match Google's, it matches.
+Events resize from the bottom edge only, as Google's do. The Today button is outlined, the views are Day, 4 Days, Week and
+Month, and the keyboard shortcuts are Google's: T for today, J and K to move,
+D, W and M for the views, C for a new event and / to search. Someone switching
+over doesn't have to learn anything new.
+
+### Weather without an account or a battery cost
+
+Knowing it'll rain at 4 changes how you plan the day, so the calendar shows the
+weather beside the date. Apple's own weather service needs a paid developer
+account, so Chora uses Open-Meteo, which is free and needs no key. To keep it
+light on battery and private, it asks macOS for a rough location (about a
+kilometer), refreshes at most every 30 minutes, and only while the Calendar tab
+is open. It is never polled in the background.
 
 ### Letting people choose the size
 
@@ -209,8 +232,9 @@ already covered.
   are open, their dark backdrop sits over the Undo message, so the first click
   on Undo just closes the box. Undo replaced confirmation dialogs, so the
   safety net has to be reachable. *(User control and freedom.)*
-- **⌥1 to ⌥5 are invisible.** The shortcuts that switch tabs aren't shown
-  anywhere in the app, so only people who read the release notes find them.
+- **The tab shortcuts are invisible.** Pressing 1 to 5 (or ⌥1 to ⌥5) switches
+  tabs, but the numbers aren't shown anywhere in the app, so only people who
+  read the release notes find them.
   Showing each tab's number when you hover over it would fix it.
   *(Recognition rather than recall; flexibility and efficiency.)*
 
@@ -243,7 +267,7 @@ stuck.
 
 I run Chora like a small product team of one. Every change starts as a written
 plan, gets tried on my own Mac, and ships only after it works. Releases are
-small and frequent: 22 versions since September 2026, each with a
+small and frequent: 23 versions since September 2026, each with a
 plain-language changelog entry that becomes the in-app update note, the GitHub
 release, and the website's "What's new" at once. One release script builds,
 signs, and publishes each version, so shipping a fix takes minutes. Chora runs
