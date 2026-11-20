@@ -13,8 +13,8 @@ links:
   - { label: "Source", href: "https://github.com/ronaldw07/boring.notch" }
   - { label: "Upstream", href: "https://github.com/TheBoredTeam/boring.notch" }
 metrics:
-  - { value: "24", label: "versions shipped since September 2026" }
-  - { value: "17", label: "signed releases delivered by in-app auto-update" }
+  - { value: "25", label: "versions shipped since September 2026" }
+  - { value: "18", label: "signed releases delivered by in-app auto-update" }
 order: 1
 ---
 
@@ -128,6 +128,18 @@ Events resize from the bottom edge only, as Google's do. The Today button is out
 Month, and the keyboard shortcuts are Google's: T for today, J and K to move,
 D, W and M for the views, C for a new event and / to search. Someone switching
 over doesn't have to learn anything new.
+
+### Calendars without another sign-in
+
+The obvious move was a "Connect Google Calendar" button that loads events
+straight from Google. I didn't build it. Anyone who already has Google on their
+Mac would see every event twice, and every new user would hit Google's
+"unverified app" warning and its 100-person cap just to see their own day.
+Instead, events come from the accounts already on the Mac, so Google, iCloud
+and Outlook all work with no sign-in at all, and an Add account button opens
+the Mac's own setup screen. Signing in with Google is a single optional button
+for the extras macOS can't do: answering invites, Meet links, event colors and
+Google Tasks.
 
 ### Weather without an account or a battery cost
 
@@ -267,7 +279,7 @@ stuck.
 
 I run Chora like a small product team of one. Every change starts as a written
 plan, gets tried on my own Mac, and ships only after it works. Releases are
-small and frequent: 24 versions since September 2026, each with a
+small and frequent: 25 versions since September 2026, each with a
 plain-language changelog entry that becomes the in-app update note, the GitHub
 release, and the website's "What's new" at once. One release script builds,
 signs, and publishes each version, so shipping a fix takes minutes. Chora runs
