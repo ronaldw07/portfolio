@@ -13,8 +13,8 @@ links:
   - { label: "Source", href: "https://github.com/ronaldw07/boring.notch" }
   - { label: "Upstream", href: "https://github.com/TheBoredTeam/boring.notch" }
 metrics:
-  - { value: "25", label: "versions shipped since September 2026" }
-  - { value: "18", label: "signed releases delivered by in-app auto-update" }
+  - { value: "26", label: "versions shipped since September 2026" }
+  - { value: "19", label: "signed releases delivered by in-app auto-update" }
 order: 1
 ---
 
@@ -81,10 +81,11 @@ One day, 4 days, a week or a month, with the weather for each day. The day
 runs as one wide timeline or top to bottom like a phone calendar. Drag events
 to move them (across days in the week), pull the bottom edge to change the
 end, click for details and a one-click Join for video calls, drag on an empty
-spot or type a sentence to add an event, make it repeat or remind you,
-duplicate, edit or delete it, and undo any change. Search a year of events,
-answer Google invites, add guests and a Meet link, and see your Google Tasks
-alongside.
+spot or type a sentence to add an event, make it repeat on any schedule or
+remind you, copy and paste, duplicate, edit or delete it, and undo any change
+(⌘Z too). A heads-up beside the closed notch says when an event starts in five
+minutes. Search a year of events, answer Google invites, add guests and a Meet
+link, and see and edit your Google Tasks on every day.
 
 ![Your day as a timeline in the notch, with events you can drag to move or resize](/media/chora/calendar.png)
 
@@ -140,6 +141,15 @@ and Outlook all work with no sign-in at all, and an Add account button opens
 the Mac's own setup screen. Signing in with Google is a single optional button
 for the extras macOS can't do: answering invites, Meet links, event colors and
 Google Tasks.
+
+### Task times Google won't store
+
+People asked to see their tasks at a time in the day, the way Google Calendar
+shows them. Google's task service only shares a task's day with other apps, so
+there was no time to import. Rather than leave tasks in a strip above the day,
+Chora lets you give a task a time and keeps that time on the Mac. The tradeoff
+is spelled out on the Add time button: Google Calendar won't see the time, but
+the day in the notch finally shows everything you need to do and when.
 
 ### Weather without an account or a battery cost
 
@@ -279,7 +289,7 @@ stuck.
 
 I run Chora like a small product team of one. Every change starts as a written
 plan, gets tried on my own Mac, and ships only after it works. Releases are
-small and frequent: 25 versions since September 2026, each with a
+small and frequent: 26 versions since September 2026, each with a
 plain-language changelog entry that becomes the in-app update note, the GitHub
 release, and the website's "What's new" at once. One release script builds,
 signs, and publishes each version, so shipping a fix takes minutes. Chora runs
