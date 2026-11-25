@@ -13,7 +13,7 @@ links:
   - { label: "Source", href: "https://github.com/ronaldw07/boring.notch" }
   - { label: "Upstream", href: "https://github.com/TheBoredTeam/boring.notch" }
 metrics:
-  - { value: "26", label: "versions shipped since September 2026" }
+  - { value: "27", label: "versions shipped since September 2026" }
   - { value: "19", label: "signed releases delivered by in-app auto-update" }
 order: 1
 ---
@@ -82,8 +82,8 @@ runs as one wide timeline or top to bottom like a phone calendar. Drag events
 to move them (across days in the week), pull the bottom edge to change the
 end, click for details and a one-click Join for video calls, drag on an empty
 spot or type a sentence to add an event, make it repeat on any schedule or
-remind you, copy and paste, duplicate, edit or delete it, and undo any change
-(⌘Z too). A heads-up beside the closed notch says when an event starts in five
+remind you, copy and paste, duplicate, edit or delete it, move it to another
+calendar or recolor it, and undo any change (⌘Z too). A heads-up beside the closed notch says when an event starts in five
 minutes. Search a year of events, answer Google invites, add guests and a Meet
 link, and see and edit your Google Tasks on every day.
 
@@ -190,7 +190,13 @@ Dragging or deleting an event in a space this small invites mistakes, but a
 confirmation dialog on every move would slow down every change to guard
 against a rare one. So moves and resizes happen straight away, delete only
 asks for a second tap on the same button, and every change can be undone, one
-step at a time.
+step at a time. In 0.9.4 that rule reached Google too: saving an edit closes the
+box the moment you click, and changes sent to Google (a color, an invite answer,
+a task ticked off or deleted) sit behind the same Undo. The tradeoff was waiting
+on the network versus feeling instant, so the screen shows the change at once,
+Google catches up in the background, and anything it refuses goes back with a
+note. A deleted task stays only hidden until Undo is no longer offered, so it
+can come back without being recreated.
 
 ## Explorations
 
@@ -289,7 +295,7 @@ stuck.
 
 I run Chora like a small product team of one. Every change starts as a written
 plan, gets tried on my own Mac, and ships only after it works. Releases are
-small and frequent: 26 versions since September 2026, each with a
+small and frequent: 27 versions since September 2026, each with a
 plain-language changelog entry that becomes the in-app update note, the GitHub
 release, and the website's "What's new" at once. One release script builds,
 signs, and publishes each version, so shipping a fix takes minutes. Chora runs
