@@ -14,7 +14,7 @@ metrics:
   - { value: "100%", label: "memory recall on a 45-question held-out test" }
   - { value: "0", label: "model calls before Today appears" }
   - { value: "<2s", label: "typical assistant reply" }
-order: 3
+order: 2
 ---
 
 ## Summary
@@ -36,14 +36,14 @@ as text, and the plan itself lives nowhere. My own week was split the same way:
 assignments in Canvas, recruiting emails in Gmail, events in Calendar, goals in
 my head. I could never see the whole plan, or what to do next.
 
-## Target user
+## Who it's for
 
 Students and early-career people working toward a goal that takes months,
 like a job search, a portfolio, or getting fit, while school and everything
 else keeps going. They need a plan they can see at a glance, advice they can
 trust, and an answer to what to do today.
 
-## Competitors
+## What's already out there
 
 - **Todoist and Apple Reminders**: fast capture and good check-off, but they
   show a flat list. Nothing shows the route to a goal or how far along you are.
@@ -56,7 +56,7 @@ trust, and an answer to what to do today.
 Mindtrail's bet: the plan should be something you can see, and the assistant
 should edit that plan directly instead of describing changes for you to make.
 
-## Insight
+## Design principles
 
 Four design principles came out of using it every day:
 
@@ -68,7 +68,29 @@ Four design principles came out of using it every day:
 - **Show where everything came from.** Anything created automatically shows its
   source.
 
-## Solution
+## Designing the AI
+
+The assistant is AI inside a workflow, not a chat window next to one. It works
+on the same map you do, which raises the stakes: a wrong answer in a chat is
+text you can ignore, while a wrong edit changes your plan. So the design keeps
+you in charge at every step:
+
+- **It asks before acting.** Before suggesting a plan, it asks one question,
+  with tappable answers drawn from your own notes, instead of guessing.
+- **Nothing is lost without your yes.** Suggested stops appear dashed until you
+  accept them, and deletions wait for your yes.
+- **It shows its sources.** Anything created from an email names where it came
+  from and links back to the original.
+- **It fails visibly.** Every request ends in a state you can see and act on,
+  and when one model is unavailable it switches to a backup instead of hanging.
+- **Its memory is yours to edit.** What it remembers about you is a list of
+  saved facts you can see and edit.
+
+<Callout label="Principle">
+The assistant can change your plan, but it can't take anything away without asking.
+</Callout>
+
+## The design
 
 ### A map of every goal
 
@@ -142,35 +164,7 @@ keeps accepting messages while it works, and the app switches to a backup
 model when one is unavailable. All motion is short and eased, and respects
 reduced-motion settings.
 
-## Use of AI
-
-The assistant is AI inside a workflow, not a chat window next to one. It works
-on the same map you do, which raises the stakes: a wrong answer in a chat is
-text you can ignore, while a wrong edit changes your plan. So the design keeps
-you in charge at every step:
-
-- **It asks before acting.** Before suggesting a plan, it asks one question,
-  with tappable answers drawn from your own notes, instead of guessing.
-- **Nothing is lost without your yes.** Suggested stops appear dashed until you
-  accept them, and deletions wait for your yes.
-- **It shows its sources.** Anything created from an email names where it came
-  from and links back to the original.
-- **It fails visibly.** Every request ends in a state you can see and act on,
-  and when one model is unavailable it switches to a backup instead of hanging.
-- **Its memory is yours to edit.** What it remembers about you is a list of
-  saved facts you can see and edit.
-
-<Callout label="Principle">
-The assistant can change your plan, but it can't take anything away without asking.
-</Callout>
-
-## Distribution
-
-Mindtrail runs locally as a browser app, with no server to host and no
-account to create. It connects to Gmail, Google Calendar, and Canvas with your
-own sign-in, and everything it learns stays on your machine.
-
-## Adapting to user feedback
+## Listening to users
 
 I was Mindtrail's first daily user, and the redesign above is a record of
 that feedback: the page reload that made checked-off to-dos vanish, the route
@@ -179,7 +173,13 @@ said, and the job to-dos left over from applications that had already
 closed. Each one became a design change I could verify against the same
 screen that showed the problem.
 
-## Process
+## Getting it to people
+
+Mindtrail runs locally as a browser app, with no server to host and no
+account to create. It connects to Gmail, Google Calendar, and Canvas with your
+own sign-in, and everything it learns stays on your machine.
+
+## How I work
 
 Whenever something felt wrong, I captured the screen, redesigned it, and
 checked the fix against that same screen, using my own classes, applications,

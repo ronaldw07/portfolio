@@ -2,7 +2,7 @@
 title: Chora
 tagline: A volume mixer, calendar, timer, and music player that live in your Mac's notch.
 blurb: A free macOS app that turns the notch into a per-app volume mixer, an editable calendar, a timer, and a music player.
-role: "Product lead, engineering and design"
+role: "Lead: product design and engineering"
 context: Free macOS app, built on the open-source boring.notch
 timeline: "Sep 2026 – present"
 status: Shipping
@@ -39,13 +39,13 @@ means turning down everything. Checking my next event means opening a
 calendar. A timer means another app. Each one is small, but together they
 break focus dozens of times a day.
 
-## Target user
+## Who it's for
 
 People who live on a MacBook with a notch and want small, frequent actions one
 glance away: students, designers, and developers who juggle music, calls,
 meetings, and focus sessions at once.
 
-## Competitors
+## What's already out there
 
 - **Notch utilities like NotchNook**: cover media controls and shortcuts, but
   not per-app volume or a calendar you can edit.
@@ -54,7 +54,7 @@ meetings, and focus sessions at once.
 
 Chora's bet: the notch should be a place to do things, not just look at them.
 
-## Insight
+## Design principles
 
 Four design principles decide what gets built and what gets cut:
 
@@ -67,48 +67,6 @@ Four design principles decide what gets built and what gets cut:
   together instead of fighting for it.
 - **Stay out of the way.** It should be reliable enough to forget about, and
   updates should install without you thinking about them.
-
-## Solution
-
-### Volume, per app
-
-A master slider plus a slider for each app. Turn Discord down without touching
-Spotify.
-
-### A calendar you can edit
-
-One day, 4 days, a week or a month, with the weather for each day. The day
-runs as one wide timeline or top to bottom like a phone calendar. Drag events
-to move them (across days in the week), pull the bottom edge to change the
-end, click for details and a one-click Join for video calls, drag on an empty
-spot or type a sentence to add an event, make it repeat on any schedule or
-remind you, copy and paste, duplicate, edit or delete it, move it to another
-calendar or recolor it, and undo any change (⌘Z too). A heads-up beside the closed notch says when an event starts in five
-minutes. Search a year of events, answer Google invites, add guests and a Meet
-link, and see and edit your Google Tasks on every day.
-
-![Your day as a timeline in the notch, with events you can drag to move or resize](/media/chora/calendar.png)
-
-### A timer that forgives mistakes
-
-Lengths down to the second, a list of recent timers, a smooth progress ring,
-and undo when you reset by accident.
-
-![The timer tab](/media/chora/timer.png)
-
-### Music that shares the space
-
-Album art, a live visualizer, and synced lyrics, now on by default. When a
-timer is running, it sits next to the music instead of replacing it.
-
-![The music tab with album art and a live visualizer](/media/chora/music.png)
-
-### Quick to move around
-
-Hover the notch and press 1 to 5 to switch tabs (or ⌥1 to ⌥5 from anywhere
-while it's open), and the calendar has Google Calendar's own shortcuts. A
-shelf holds files you drop on the notch, and clipboard history gets back
-anything you copied.
 
 ## Design decisions
 
@@ -231,23 +189,6 @@ and what you can grab are in the same place.
 
 ![Four frames: press on an empty spot, drag to draw the event, name it in a small box, and it's saved with Undo](/media/chora/frame-drag.png)
 
-## Distribution
-
-Chora is a free download as a .dmg for Apple silicon Macs on macOS 14 or later.
-macOS blocks apps it hasn't verified, and the first install used to need a
-Terminal command, which looked suspicious to the people I most wanted to try it.
-Now it's two clicks in System Settings ("Open Anyway"), with the steps right
-under the download button so nobody gets stuck. After that, signed updates
-install on their own. There's a Discord for setups and early versions, and a feedback form for
-bugs and requests.
-
-## Adapting to user feedback
-
-The site has a public "Coming soon" list, and a "Your idea" box sends requests
-straight onto it. The feedback form asks for what I need to act on a report:
-steps to reproduce, the app and macOS version, and what you expected. I use
-Chora every day, and the first things I built were the ones I kept missing.
-
 ## Heuristic review
 
 I went through the calendar tab against Nielsen's usability heuristics, using
@@ -291,7 +232,66 @@ Chora and creating, editing, and deleting events, while I watch where they get
 stuck.
 </Callout>
 
-## Process
+## What shipped
+
+### Volume, per app
+
+A master slider plus a slider for each app. Turn Discord down without touching
+Spotify.
+
+### A calendar you can edit
+
+One day, 4 days, a week or a month, with the weather for each day. The day
+runs as one wide timeline or top to bottom like a phone calendar. Drag events
+to move them (across days in the week), pull the bottom edge to change the
+end, click for details and a one-click Join for video calls, drag on an empty
+spot or type a sentence to add an event, make it repeat on any schedule or
+remind you, copy and paste, duplicate, edit or delete it, move it to another
+calendar or recolor it, and undo any change (⌘Z too). A heads-up beside the closed notch says when an event starts in five
+minutes. Search a year of events, answer Google invites, add guests and a Meet
+link, and see and edit your Google Tasks on every day.
+
+![Your day as a timeline in the notch, with events you can drag to move or resize](/media/chora/calendar.png)
+
+### A timer that forgives mistakes
+
+Lengths down to the second, a list of recent timers, a smooth progress ring,
+and undo when you reset by accident.
+
+![The timer tab](/media/chora/timer.png)
+
+### Music that shares the space
+
+Album art, a live visualizer, and synced lyrics, now on by default. When a
+timer is running, it sits next to the music instead of replacing it.
+
+![The music tab with album art and a live visualizer](/media/chora/music.png)
+
+### Quick to move around
+
+Hover the notch and press 1 to 5 to switch tabs (or ⌥1 to ⌥5 from anywhere
+while it's open), and the calendar has Google Calendar's own shortcuts. A
+shelf holds files you drop on the notch, and clipboard history gets back
+anything you copied.
+
+## Getting it to people
+
+Chora is a free download as a .dmg for Apple silicon Macs on macOS 14 or later.
+macOS blocks apps it hasn't verified, and the first install used to need a
+Terminal command, which looked suspicious to the people I most wanted to try it.
+Now it's two clicks in System Settings ("Open Anyway"), with the steps right
+under the download button so nobody gets stuck. After that, signed updates
+install on their own. There's a Discord for setups and early versions, and a feedback form for
+bugs and requests.
+
+## Listening to users
+
+The site has a public "Coming soon" list, and a "Your idea" box sends requests
+straight onto it. The feedback form asks for what I need to act on a report:
+steps to reproduce, the app and macOS version, and what you expected. I use
+Chora every day, and the first things I built were the ones I kept missing.
+
+## How I work
 
 I run Chora like a small product team of one. Every change starts as a written
 plan, gets tried on my own Mac, and ships only after it works. Releases are
