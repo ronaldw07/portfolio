@@ -199,7 +199,7 @@ export function Intro() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[100svh] w-full overflow-hidden">
+    <section ref={sectionRef} className="relative h-[75svh] w-full overflow-hidden">
       <p className="sr-only">{site.name}</p>
       <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 h-full w-full" />
       <a

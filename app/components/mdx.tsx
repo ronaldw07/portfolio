@@ -13,7 +13,7 @@ function H2({ children }: HeadingProps) {
   return (
     <h2
       id={id}
-      className="mt-16 scroll-mt-28 font-serif text-2xl leading-snug first:mt-0 sm:text-[28px]"
+      className="mt-12 scroll-mt-28 font-serif text-2xl leading-snug first:mt-0 sm:text-[28px]"
     >
       {children}
     </h2>

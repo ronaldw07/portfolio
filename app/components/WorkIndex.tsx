@@ -7,17 +7,17 @@ const STAGGER_MS = 60;
 
 export function WorkIndex({ projects }: { projects: Project[] }) {
   return (
-    <section id="work" className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+    <section id="work" className="mx-auto max-w-6xl px-6 py-16 sm:px-10 sm:py-20">
       <Reveal>
         <h2 className="font-serif text-2xl sm:text-3xl">Selected work</h2>
       </Reveal>
 
-      <div className="mt-12 border-t border-line">
+      <div className="mt-8 border-t border-line">
         {projects.map((project, index) => (
           <Reveal key={project.slug} delay={index * STAGGER_MS}>
             <Link
               href={`/work/${project.slug}`}
-              className="group flex flex-col gap-3 border-b border-line py-9 transition-colors duration-300 hover:bg-paper sm:flex-row sm:items-baseline sm:justify-between sm:gap-8 sm:px-2 sm:-mx-2"
+              className="group flex flex-col gap-3 border-b border-line py-6 transition-colors duration-300 hover:bg-paper sm:flex-row sm:items-baseline sm:justify-between sm:gap-8 sm:px-2 sm:-mx-2"
             >
               <div className="flex items-start gap-4 sm:w-[42%]">
                 {project.logo && (

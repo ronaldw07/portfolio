@@ -5,7 +5,7 @@ import { ContactForm } from "./ContactForm";
 export function Footer() {
   return (
     <footer id="contact" className="border-t border-line">
-      <div className="mx-auto max-w-6xl px-6 py-20 sm:px-10 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-10 sm:py-20">
         <div className="grid gap-12 sm:grid-cols-2 sm:gap-20">
           <div>
             <p className="font-serif text-3xl leading-[1.15] sm:text-5xl sm:leading-[1.1]">
