@@ -13,7 +13,7 @@ links:
   - { label: "Source", href: "https://github.com/ronaldw07/boring.notch" }
   - { label: "Upstream", href: "https://github.com/TheBoredTeam/boring.notch" }
 metrics:
-  - { value: "27", label: "versions shipped since September 2026" }
+  - { value: "28", label: "versions shipped since September 2026" }
   - { value: "19", label: "signed releases delivered by in-app auto-update" }
 order: 1
 ---
@@ -253,10 +253,16 @@ link, and see and edit your Google Tasks on every day.
 
 ![Your day as a timeline in the notch, with events you can drag to move or resize](/media/chora/calendar.png)
 
-### A timer that forgives mistakes
+### Timers that keep up
 
-Lengths down to the second, a list of recent timers, a smooth progress ring,
-and undo when you reset by accident.
+Lengths down to the second, a row of recent timers, a smooth progress ring,
+and undo when you cancel by accident. In 0.10.0 the timer stopped being one at
+a time: people run a few things at once, like the oven and a meeting, and a
+single timer made them pick. The tab has no room for several rings, so one
+ring shows the timer you're looking at while a narrow list beside it shows
+every timer's time left, and the closed notch shows only the one ending
+soonest, with "+1" for the rest. The stopwatch got laps, with the lap in
+progress counting live under the total.
 
 ![The timer tab](/media/chora/timer.png)
 
@@ -295,7 +301,7 @@ Chora every day, and the first things I built were the ones I kept missing.
 
 I run Chora like a small product team of one. Every change starts as a written
 plan, gets tried on my own Mac, and ships only after it works. Releases are
-small and frequent: 27 versions since September 2026, each with a
+small and frequent: 28 versions since September 2026, each with a
 plain-language changelog entry that becomes the in-app update note, the GitHub
 release, and the website's "What's new" at once. One release script builds,
 signs, and publishes each version, so shipping a fix takes minutes. Chora runs
