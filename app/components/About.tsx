@@ -12,15 +12,16 @@ const DOG_NAME = "Coco";
 
 const facts = [
   { label: "Based in", value: "San Francisco, CA" },
-  { label: "Studying", value: "CS Informatics, UC Irvine" },
+  { label: "Studying", value: "Computer Science and Informatics, UC Irvine" },
   { label: "Fellowship", value: "Break Through Tech AI Studio × Chewy" },
 ];
 
 const currentlyLearning = [
-  "Product engineering",
-  "Product management",
   "Product design",
+  "Interaction design",
+  "Product management",
   "AI",
+  "Product engineering",
   "Agents",
   "Infrastructure",
 ];
@@ -29,16 +30,17 @@ export function About() {
   // Checked on each render, so adding the photo needs no restart.
   const hasDogPhoto = fs.existsSync(path.join(process.cwd(), "public", DOG_PHOTO));
   return (
-    <section id="about" className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+    <section id="about" className="mx-auto max-w-6xl px-6 py-16 sm:px-10 sm:py-20">
       <div className="grid gap-12 sm:grid-cols-[1fr_280px] sm:gap-20">
         <Reveal>
           <h2 className="font-serif text-2xl sm:text-3xl">About me</h2>
           <div className="mt-6 max-w-xl space-y-4 text-[15px] leading-relaxed text-muted">
             <p>
-              I care about the whole lifecycle of a product: the problem worth
-              solving, the person it&apos;s actually for, and whether the thing
-              I shipped changed their behavior. The code is the part I enjoy
-              most, but it&apos;s in service of that, not the point of it.
+              I&apos;m a product designer who builds. I care about the small
+              moments that decide whether someone trusts a product: what it
+              asks before acting, what happens when something goes wrong, and
+              whether the next step is obvious. I prototype in code because a
+              design only proves itself once someone is using it.
             </p>
             <p>
               I&apos;m part of Break Through Tech&apos;s AI Studio fellowship,
@@ -53,10 +55,10 @@ export function About() {
               infrastructure layers most products now run on.
             </p>
             <p>
-              Every case study on this site follows the same process: a real
-              problem, a specific target user, a look at what already exists,
-              the insight that made the solution different, how it got in
-              front of people, and what changed after they used it.
+              Every case study here follows how I work: a real problem and the
+              person who has it, the principles that guided the design, the
+              options I weighed and why I picked one, and what changed once
+              people used it.
             </p>
           </div>
 
@@ -90,7 +92,7 @@ export function About() {
                 {currentlyLearning.map((topic) => (
                   <span
                     key={topic}
-                    className="rounded-full border border-line px-3 py-1 text-[13px] text-foreground"
+                    className="grow rounded-full border border-line px-3 py-1 text-center text-[13px] text-foreground"
                   >
                     {topic}
                   </span>

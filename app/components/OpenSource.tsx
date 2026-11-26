@@ -5,7 +5,7 @@ const STAGGER_MS = 60;
 
 export function OpenSource() {
   return (
-    <section id="open-source" className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+    <section id="open-source" className="mx-auto max-w-6xl px-6 py-16 sm:px-10 sm:py-20">
       <Reveal>
         <h2 className="font-serif text-2xl sm:text-3xl">Open source</h2>
         <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-muted">

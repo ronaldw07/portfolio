@@ -13,7 +13,7 @@ links:
 metrics:
   - { value: "224×224", label: "on-device model input" }
   - { value: "0", label: "network calls to take a photo" }
-order: 2
+order: 3
 ---
 
 ## Summary
@@ -37,7 +37,7 @@ Photography apps that do address composition mostly do it after the fact:
 crop suggestions in an editor, or a course you'd have to go take. By the
 time you're editing, the moment that would have made the photo is gone.
 
-## Target user
+## Who it's for
 
 Someone taking photos with their phone as their primary camera, not a
 hobbyist with a DSLR who already has the vocabulary, and not someone who
@@ -46,7 +46,7 @@ and scenes casually (travel, friends, everyday moments) and can feel when a
 photo is a little off but can't name what to change, in the three seconds
 before they'd normally just tap the shutter anyway.
 
-## Competitors
+## What's already out there
 
 - **Built-in camera apps (iOS/Android)**: handle exposure and focus, say
   nothing about framing.
@@ -58,7 +58,7 @@ before they'd normally just tap the shutter anyway.
 None of them close the loop *while the camera is still open*. That gap is
 the whole product.
 
-## Insight
+## The key insight
 
 Composition feedback is only useful if it arrives before the shutter, and
 it only feels useful if it's specific to *this* frame, not a rule you have
@@ -71,7 +71,7 @@ huge model. A model trained to rank *candidate crops of the same scene*
 against each other is a much smaller problem than "is this a good photo,"
 and it's small enough to run on-device at interactive speed.
 
-## Solution
+## How it works
 
 The app classifies each frame into one of two modes and generates
 subject-aware candidate crops accordingly:
@@ -91,15 +91,7 @@ frames, that's treated as a local maximum and the app tells you you're
 ready, a deliberately narrow claim: best among the generated candidates,
 not "the best possible photo."
 
-## Distribution
-
-Pre-launch. The current build is intentionally scoped to prove the
-feedback loop works end to end on real hardware before investing in
-capture polish, App Store packaging, or marketing. Distribution work
-starts once the core loop holds up across enough real devices and lighting
-conditions that it's worth someone's first impression.
-
-## Adapting to user feedback
+## Listening to users
 
 The known-limitations list *is* the feedback loop right now: running the
 app on my own shooting sessions surfaced that motion verification wasn't
@@ -114,7 +106,15 @@ found by pointing the camera at group shots and portraits where the face
 box under-represented the actual subject, which is next after motion
 verification.
 
-## Process
+## Getting it to people
+
+Pre-launch. The current build is intentionally scoped to prove the
+feedback loop works end to end on real hardware before investing in
+capture polish, App Store packaging, or marketing. Distribution work
+starts once the core loop holds up across enough real devices and lighting
+conditions that it's worth someone's first impression.
+
+## How it's built
 
 Built feature-first around the actual runtime loop rather than the file
 structure: `camera-capture` for the UI/permissions/preview, and

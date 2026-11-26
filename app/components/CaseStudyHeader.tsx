@@ -11,7 +11,7 @@ export function CaseStudyHeader({ project }: { project: Project }) {
   ].filter(Boolean) as Array<{ label: string; value: string }>;
 
   return (
-    <header className="mx-auto max-w-3xl px-6 pt-36 pb-14 sm:px-0 sm:pt-44">
+    <header className="mx-auto max-w-3xl px-6 pt-28 pb-12 sm:px-0 sm:pt-32">
       <Reveal>
         <div className="flex items-center gap-4">
           {project.logo && (
